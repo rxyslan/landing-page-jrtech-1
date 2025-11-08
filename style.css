@@ -1,0 +1,650 @@
+/* =================================================================== */
+/* 1. CONFIGURAÇÕES GLOBAIS
+/* =================================================================== */
+
+/* --- Variáveis de Cores --- */
+:root {
+    --green-primary: #00BF63; /* Um verde vibrante */
+    --green-neon-start: #39FF14; /* Início do gradiente neon */
+    --green-neon-end: #00FF00;   /* Fim do gradiente neon */
+    --gray-light: #f9f9f9; /* Mais claro para seções */
+    --gray-medium: #e0e0e0;
+    --gray-dark: #333333;
+    --text-color: #444444; /* Um pouco mais escuro para melhor legibilidade */
+    --white: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    --shadow-medium: rgba(0, 0, 0, 0.15);
+}
+
+/* --- Reset Básico --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- Estilos do Body --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    /*background-color: var(--white);*/
+}
+
+/* --- Tipografia Global --- */
+h1, h2, h3 {
+    color: var(--gray-dark);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 3.8em; /* Títulos maiores para destaque */
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 2.8em;
+    margin-bottom: 40px; /* Mais espaço abaixo dos títulos de seção */
+}
+
+h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.15em; /* Fonte um pouco maior para corpo de texto */
+    line-height: 1.7;
+}
+
+/* =================================================================== */
+/* 2. LAYOUT E SEÇÕES GERAIS
+/* =================================================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Padding horizontal para não colar nas bordas */
+}
+
+.section {
+    padding: 80px 0; /* Aumenta o espaçamento entre as seções */
+    text-align: center;
+    position: relative; /* Para possíveis elementos posicionados */
+}
+
+.section:nth-of-type(even) { /* Para alternar o fundo entre seções */
+    background-color: var(--gray-light);
+}
+
+/* =================================================================== */
+/* 3. COMPONENTES REUTILIZÁVEIS
+/* =================================================================== */
+
+/* --- Botões --- */
+.btn-primary {
+    display: inline-block;
+    background: linear-gradient(45deg, var(--green-neon-start), var(--green-neon-end));
+    color: var(--white);
+    padding: 18px 35px; /* Botões maiores e mais proeminentes */
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3em;
+    font-weight: 700; /* Mais bold */
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 25px var(--shadow-medium); /* Sombra mais forte */
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px); /* Efeito de levitação mais pronunciado */
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background-color: transparent;
+    color: var(--green-primary);
+    border: 2px solid var(--green-primary);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: var(--green-primary);
+    color: var(--white);
+    border-color: var(--green-primary); /* Garante que a borda mude junto */
+}
+
+/* --- Carrossel (Seção Produtos) --- */
+.carousel-container {
+    position: relative;
+    width: 100%; /* Ajuste conforme necessário */
+    max-width: 300px; /* Largura máxima para o carrossel dentro do item */
+    margin: 20px auto 0 auto; /* Centraliza e adiciona margem superior */
+    overflow: hidden; /* Esconde as imagens que estão fora do slide */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.carousel-slide {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Transição suave para o slide */
+}
+
+.carousel-slide img {
+    min-width: 100%; /* Garante que a imagem ocupe a largura total do container */
+    height: auto;
+    display: block; /* Remove espaços extras abaixo da imagem */
+    border-radius: 8px; /* Mantém os cantos arredondados */
+    object-fit: cover; /* Garante que a imagem preencha bem o espaço */
+}
+
+.carousel-dots {
+    text-align: center;
+    padding: 10px 0;
+    background-color: var(--white); /* Fundo branco para os pontos */
+    border-top: 1px solid var(--gray-light);
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background-color: var(--gray-medium);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--green-primary); /* Ponto ativo com a cor principal */
+    transform: scale(1.2); /* Destaca o ponto ativo */
+}
+
+/* --- Carrossel (Seção Métodos) --- */
+.carousel-container-methods {
+    position: relative;
+    width: 100%; /* Ocupa a largura total do method-item */
+    max-width: 250px; /* Um pouco menor para caber nos ícones */
+    margin: 15px auto 0 auto;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-light); /* Sombra mais leve */
+}
+
+.carousel-slide-methods {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide-methods img {
+    min-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.carousel-dots-methods {
+    text-align: center;
+    padding: 8px 0; /* Padding um pouco menor */
+    /* Fundo transparente conforme solicitado */
+    border-top: 1px solid var(--gray-light);
+}
+
+.dot-methods {
+    height: 8px; /* Pontos um pouco menores */
+    width: 8px;
+    margin: 0 3px;
+    background-color: var(--gray-medium);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot-methods.active {
+    background-color: var(--green-primary);
+    transform: scale(1.2);
+}
+
+/* =================================================================== */
+/* 4. ESTILOS DE SEÇÃO ESPECÍFICOS
+/* =================================================================== */
+
+/* --- Hero Section --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--green-primary) 0%, #00d984 100%);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    
+    /* Garante no mínimo 100% da altura da tela */
+    min-height: 100vh; 
+    display: flex; /* Necessário para o alinhamento vertical */
+    align-items: center; /* Centraliza o conteúdo (as colunas) verticalmente */
+    padding: 40px 20px; /* Padding ajustado */
+}
+
+.hero-section h1 {
+    color: var(--white);
+    font-size: 4em; /* Ainda maior */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+}
+
+.hero-section p {
+    color: var(--white);
+    font-size: 1.4em;
+    margin-bottom: 50px; /* Mais espaço antes do botão */
+    opacity: 0.95;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.proof-social {
+    margin-top: 40px;
+    font-size: 1em;
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.hero-visual-image {
+    max-width: 100%; /* Imagem sempre responsiva */
+    height: auto; 
+    border-radius: 10px; 
+}
+
+.hero-content {
+    display: flex;
+    align-items: center; /* Alinha o texto e a imagem verticalmente */
+    justify-content: space-between; /* Espaço entre eles */
+    gap: 40px; /* Um vão entre as colunas */
+}
+
+.hero-text {
+    flex: 1; /* Faz a coluna de texto ocupar o espaço disponível */
+    max-width: 600px; /* Limita a largura do texto */
+    text-align: left; /* Alinhamento profissional */
+}
+
+.hero-image {
+    /* Proíbe a coluna de encolher e define largura */
+    flex-shrink: 0; 
+    width: 450px;   
+    max-width: 100%; 
+    text-align: center; 
+}
+
+/* --- Grids e Itens Genéricos --- */
+.product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+    display: grid;
+    gap: 40px; /* Mais espaçamento entre os itens */
+    margin-top: 60px;
+    justify-content: center;
+    align-items: start; /* Alinha os itens pelo topo */
+}
+
+.product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Itens maiores */
+}
+
+.methods-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.testimonials-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.steps-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* Estilo genérico para todos os itens de grid */
+.product-item, .method-item, .testimonial-item, .step-item {
+    background-color: var(--white);
+    padding: 35px; /* Mais padding */
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 6px 20px var(--shadow-light); /* Sombra mais pronunciada */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-item:hover, .method-item:hover, .testimonial-item:hover, .step-item:hover {
+    transform: translateY(-8px); /* Efeito de levitação mais forte */
+    box-shadow: 0 10px 25px var(--shadow-medium);
+}
+
+.product-item img, .method-item img, .step-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 8px; /* Borda da imagem mais arredondada */
+    object-fit: cover; /* Garante que a imagem preencha o espaço */
+}
+
+.product-item h3, .method-item h3, .step-item h3 {
+    color: var(--green-primary);
+    font-size: 1.6em; /* Títulos dos itens maiores */
+    margin-bottom: 10px;
+}
+.product-item p, .method-item p, .step-item p {
+    font-size: 1.05em;
+    margin-bottom: 0; /* Remove margem inferior para parágrafos dentro de itens */
+}
+
+/* --- Seção de Produtos (Ajustes) --- */
+/* Ajustes para o item do produto para acomodar o carrossel */
+.product-item {
+    /* display: flex; (Já está acima) */
+    /* flex-direction: column; (Já está acima) */
+    /* align-items: center; (Já está acima) */
+    justify-content: flex-start; /* Alinha ao topo para o carrossel */
+    /* height: 100%; (Já está acima) */
+}
+
+.product-item h3 {
+    margin-top: 0; /* Ajusta a margem superior do título */
+}
+
+.product-item p {
+    flex-grow: 1; /* Permite que o parágrafo ocupe espaço antes do carrossel */
+    margin-bottom: 15px; /* Adiciona espaço entre o texto e o carrossel */
+}
+
+/* --- Seção de Métodos (Ajustes) --- */
+/* Estilo neon do ícone */
+.method-item img {
+    width: 90px; /* Ícones maiores */
+    height: 90px;
+    object-fit: contain;
+    border: 3px solid var(--green-neon-start); /* Borda mais grossa com neon */
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); /* Brilho neon ao redor */
+}
+
+/* Ajuste para o method-item para acomodar o carrossel */
+.method-item {
+    /* display: flex; (Já está acima) */
+    /* flex-direction: column; (Já está acima) */
+    /* align-items: center; (Já está acima) */
+    justify-content: center; /* Centraliza verticalmente o conteúdo */
+    /* height: 100%; (Já está acima) */
+    text-align: center; /* Centraliza o texto */
+}
+
+.method-item h3 {
+    margin-top: 15px; /* Espaço entre o carrossel e o título */
+    margin-bottom: 5px;
+}
+
+/* .method-item p { (Já está acima) } */
+
+
+/* --- Seção de Depoimentos (Ajustes) --- */
+.testimonial-item {
+    text-align: left;
+    border-left: 6px solid var(--green-neon-start); /* Borda mais grossa com neon */
+    padding-left: 25px; /* Aumenta o padding para a citação */
+    background-color: var(--white); /* Garante fundo branco para o card */
+}
+
+.testimonial-item p {
+    font-style: italic;
+    font-size: 1.15em;
+    color: var(--gray-dark);
+    margin-bottom: 15px;
+}
+
+.testimonial-item h4 {
+    font-weight: 700; /* Nome mais bold */
+    color: var(--green-primary);
+    font-size: 1.1em;
+}
+
+/* --- Seção 'Como Funciona' (Ajustes) --- */
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.step-item img {
+    width: 200px; /* Imagens de passo maiores */
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 25px;
+}
+
+/* --- Seção de Benefícios --- */
+.benefits-list {
+    list-style: none;
+    text-align: left;
+    max-width: 800px;
+    margin: 40px auto 60px auto; /* Mais espaço */
+    padding-left: 0; /* Remove padding padrão da lista */
+}
+
+.benefits-list li {
+    font-size: 1.3em; /* Itens da lista maiores */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start; /* Alinha o ícone e o texto no topo */
+    color: var(--gray-dark);
+}
+
+.benefits-list li .icon {
+    font-size: 1.8em; /* Ícone maior */
+    color: var(--green-neon-start);
+    margin-right: 20px;
+    line-height: 1;
+    flex-shrink: 0; /* Impede que o ícone diminua */
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--gray-dark);
+    color: var(--white);
+    padding: 40px 20px; /* Mais padding no footer */
+    text-align: center;
+    font-size: 1em;
+}
+
+footer p {
+    margin: 0;
+    color: var(--white); /* Garante que o texto do footer seja branco */
+}
+
+/* =================================================================== */
+/* 5. RESPONSIVIDADE (MEDIA QUERIES)
+/* =================================================================== */
+
+@media (max-width: 992px) {
+    h1 {
+        font-size: 3.2em;
+    }
+    h2 {
+        font-size: 2.4em;
+    }
+    .hero-section {
+        padding: 100px 20px;
+        /* Reseta a altura mínima em telas menores se o conteúdo ficar estranho */
+        /* min-height: auto; */ 
+    }
+    .section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    /* --- Geral --- */
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+    h3 {
+        font-size: 1.5em;
+    }
+    p {
+        font-size: 1.05em;
+    }
+    .btn-primary, .btn-secondary {
+        padding: 15px 25px;
+        font-size: 1.1em;
+    }
+    .product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+        gap: 25px;
+    }
+    .product-item, .method-item, .testimonial-item, .step-item {
+        padding: 25px;
+    }
+    .method-item img {
+        width: 70px;
+        height: 70px;
+    }
+    .step-item img {
+        width: 100px;
+        height: 100px;
+    }
+    .benefits-list li {
+        font-size: 1.1em;
+    }
+    .benefits-list li .icon {
+        font-size: 1.5em;
+    }
+
+    /* --- Hero Específico --- */
+    .hero-section {
+        min-height: auto; /* Desativa a altura de 100vh em celulares */
+        padding: 80px 20px;
+    }
+    
+    .hero-content {
+        flex-direction: column; /* Empilha as colunas no celular */
+        text-align: center; /* Centraliza tudo no celular */
+    }
+
+    .hero-text {
+        text-align: center; /* Centraliza o texto no celular */
+        order: 2; /* Joga o texto para baixo da imagem */
+    }
+
+    .hero-image {
+        order: 1; /* Joga a imagem para cima do texto */
+        margin-bottom: 30px; /* Espaço quando empilhado */
+        width: 100%; /* Permite que a imagem se ajuste ao container */
+        max-width: 350px; /* Limita o tamanho máximo no celular */
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .hero-section {
+        padding: 80px 15px;
+    }
+    .section {
+        padding: 40px 0;
+    }
+    .container {
+        padding: 0 15px;
+    }
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        max-width: 300px; /* Limita a largura em telas pequenas */
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+        grid-template-columns: 1fr;
+    }
+    .testimonial-item {
+        padding-left: 15px;
+    }
+}
+
+/* =================================================================== */
+/* 6. COMPONENTE - SETA DE ROLAGEM
+/* =================================================================== */
+
+/* --- Animação de pulso (SUAVIZADA) --- */
+@keyframes pulse-down {
+    0% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(5px); /* Era 8px */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+}
+
+/* --- A Seta --- */
+.scroll-down-arrow {
+    /* Posicionamento */
+    position: absolute; /* Fixa em relação à tela (mas dentro do pai relativo) */
+    bottom: 30px; /* Distância do fundo */
+    left: 50%; /* Centraliza horizontalmente */
+    transform: translateX(-50%); /* Ajuste fino da centralização */
+    z-index: 10; /* Garante que fique por cima */
+    
+    /* Aparência */
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    
+    /* Animação (SUAVIZADA) */
+    animation: pulse-down 2.5s infinite; /* Era 2s */
+}
+
+/* --- O "V" da seta (feito com bordas) --- */
+.scroll-down-arrow::after {
+    content: '';
+    display: block;
+    width: 20px; /* [CORREÇÃO] Linha que estava cortada */
+    height: 20px; /* [CORREÇÃO] Linha que estava cortada */
+    
+    /* O truque da borda */
+    border-bottom: 3px solid var(--white);
+    border-right: 3px solid var(--white);
+    
+    /* Gira o quadrado para formar um "V" */
+    transform: rotate(45deg);
+    
+    /* Sombra para destacar no fundo verde */
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}
+
+.scroll-down-arrow:hover {
+    animation-play-state: paused; /* Pausa a animação ao passar o mouse */
+    opacity: 1;
+}
