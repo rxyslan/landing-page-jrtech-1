@@ -94,11 +94,13 @@ function initializeCarousel(containerClass, slideClass, dotClass, intervalTime =
 
 // --- CHAMADAS PARA INICIALIZAR CADA CARROSSEL ---
 
-// Inicializa o carrossel da seção Produtos
+// Inicializa o carrossel da seção Produtos (se houver, senão, não dá erro)
 initializeCarousel('carousel-container', 'carousel-slide', 'dot');
 
-// Inicializa o carrossel da seção Métodos (Reconhecimento Facial)
+// Inicializa o carrossel da seção Métodos (se houver, senão, não dá erro)
 initializeCarousel('carousel-container-methods', 'carousel-slide-methods', 'dot-methods');
+
+
 /* =================================================================== */
 /* 7. COMPONENTE - ROLAGEM SUAVE "DE VAGARINHO"
 /* =================================================================== */
@@ -107,7 +109,12 @@ function customSmoothScroll(targetSelector, duration) {
     const target = document.querySelector(targetSelector);
     if (!target) return;
 
-    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+    // Calcula a posição do topo da barra fixa
+    const topBar = document.querySelector('.top-bar-fixed');
+    const topBarHeight = topBar ? topBar.offsetHeight : 0;
+
+    // Ajusta a posição final para descontar a altura da barra fixa
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - topBarHeight;
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
     let startTime = null;
@@ -136,8 +143,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         const href = this.getAttribute('href');
         
         if (href && href !== '#') {
-            // A MÁGICA ESTÁ AQUI: 2000ms = 2 segundos.
-            // Aumente se quiser AINDA mais devagar.
+            // A MÁGICA ESTÁ AQUI: 1000ms = 1 segundo.
             customSmoothScroll(href, 1000); 
         }
     });
