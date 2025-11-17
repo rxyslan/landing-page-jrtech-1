@@ -4,9 +4,10 @@
 
 /* --- Variáveis de Cores --- */
 :root {
-    --green-primary: #00BF63; /* Um verde vibrante */
-    --green-neon-start: #39FF14; /* Início do gradiente neon */
-    --green-neon-end: #00FF00;   /* Fim do gradiente neon */
+    --green-dark: #004d2b;      /* NOVO: Verde escuro para o Hero */
+    --green-primary: #01A85A; /* Um verde vibrante */
+    --green-neon-start: #ffee00; /* Início do gradiente neon */
+    --green-neon-end: #fff23c;   /* Fim do gradiente neon */
     --gray-light: #f9f9f9; /* Mais claro para seções */
     --gray-medium: #e0e0e0;
     --gray-dark: #333333;
@@ -23,12 +24,13 @@
     box-sizing: border-box;
 }
 
+
 /* --- Estilos do Body --- */
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    /*background-color: var(--white);*/
+    /* O padding-top será adicionado via JavaScript */
 }
 
 /* --- Tipografia Global --- */
@@ -75,8 +77,61 @@ p {
     position: relative; /* Para possíveis elementos posicionados */
 }
 
-.section:nth-of-type(even) { /* Para alternar o fundo entre seções */
+/* Seções pares e ímpares
+   (id=icones) é claro, (id=beneficios) é branco, (id=produtos) é claro...
+*/
+.section:nth-of-type(odd) { 
     background-color: var(--gray-light);
+}
+.section:nth-of-type(even) { 
+    background-color: var(--white);
+}
+
+/* =================================================================== */
+/* 2.B. NOVO: BARRA DO TOPO FIXA (AGORA CLARA)
+/* =================================================================== */
+.top-bar-fixed {
+    /* MUDANÇA: Fundo branco e cor de texto escura */
+    background-color: var(--white); 
+    color: var(--gray-dark);
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /* MUDANÇA: Sombra mais suave para o fundo branco */
+    box-shadow: 0 2px 10px var(--shadow-light); 
+}
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.top-bar-phone {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--gray-dark);
+}
+.btn-orcamento-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--green-neon-start); /* Amarelo (agora se destaca) */
+    color: var(--gray-dark); 
+    padding: 8px 15px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    transition: transform 0.2s ease;
+}
+.btn-orcamento-top:hover {
+    transform: scale(1.05);
+}
+.btn-orcamento-top img {
+    width: 20px; /* Ícone pequeno */
+    height: 20px;
 }
 
 /* =================================================================== */
@@ -86,8 +141,9 @@ p {
 /* --- Botões --- */
 .btn-primary {
     display: inline-block;
-    background: linear-gradient(45deg, var(--green-neon-start), var(--green-neon-end));
-    color: var(--white);
+    /* Fundo amarelo sólido, cor de texto escura */
+    background: var(--green-neon-start);
+    color: var(--gray-dark); 
     padding: 18px 35px; /* Botões maiores e mais proeminentes */
     border: none;
     border-radius: 50px;
@@ -126,6 +182,7 @@ p {
 }
 
 /* --- Carrossel (Seção Produtos) --- */
+/* (Este CSS ainda é usado pelo script.js, mesmo que a seção original tenha saído) */
 .carousel-container {
     position: relative;
     width: 100%; /* Ajuste conforme necessário */
@@ -172,60 +229,14 @@ p {
     transform: scale(1.2); /* Destaca o ponto ativo */
 }
 
-/* --- Carrossel (Seção Métodos) --- */
-.carousel-container-methods {
-    position: relative;
-    width: 100%; /* Ocupa a largura total do method-item */
-    max-width: 250px; /* Um pouco menor para caber nos ícones */
-    margin: 15px auto 0 auto;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px var(--shadow-light); /* Sombra mais leve */
-}
-
-.carousel-slide-methods {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel-slide-methods img {
-    min-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;
-    object-fit: cover;
-}
-
-.carousel-dots-methods {
-    text-align: center;
-    padding: 8px 0; /* Padding um pouco menor */
-    /* Fundo transparente conforme solicitado */
-    border-top: 1px solid var(--gray-light);
-}
-
-.dot-methods {
-    height: 8px; /* Pontos um pouco menores */
-    width: 8px;
-    margin: 0 3px;
-    background-color: var(--gray-medium);
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.dot-methods.active {
-    background-color: var(--green-primary);
-    transform: scale(1.2);
-}
-
 /* =================================================================== */
 /* 4. ESTILOS DE SEÇÃO ESPECÍFICOS
 /* =================================================================== */
 
 /* --- Hero Section --- */
 .hero-section {
-    background: linear-gradient(135deg, var(--green-primary) 0%, #00d984 100%);
+    /* Fundo verde escuro sólido */
+    background: var(--green-dark); 
     color: var(--white);
     position: relative;
     overflow: hidden;
@@ -251,13 +262,6 @@ p {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.proof-social {
-    margin-top: 40px;
-    font-size: 1em;
-    opacity: 0.9;
-    font-weight: 600;
 }
 
 .hero-visual-image {
@@ -288,20 +292,12 @@ p {
 }
 
 /* --- Grids e Itens Genéricos --- */
-.product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+.product-grid, .testimonials-grid, .steps-grid {
     display: grid;
     gap: 40px; /* Mais espaçamento entre os itens */
     margin-top: 60px;
     justify-content: center;
     align-items: start; /* Alinha os itens pelo topo */
-}
-
-.product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Itens maiores */
-}
-
-.methods-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 .testimonials-grid {
@@ -313,7 +309,7 @@ p {
 }
 
 /* Estilo genérico para todos os itens de grid */
-.product-item, .method-item, .testimonial-item, .step-item {
+.testimonial-item, .step-item {
     background-color: var(--white);
     padding: 35px; /* Mais padding */
     border-radius: 12px; /* Cantos mais arredondados */
@@ -326,12 +322,12 @@ p {
     align-items: center;
 }
 
-.product-item:hover, .method-item:hover, .testimonial-item:hover, .step-item:hover {
+.testimonial-item:hover, .step-item:hover {
     transform: translateY(-8px); /* Efeito de levitação mais forte */
     box-shadow: 0 10px 25px var(--shadow-medium);
 }
 
-.product-item img, .method-item img, .step-item img {
+.step-item img {
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
@@ -339,63 +335,15 @@ p {
     object-fit: cover; /* Garante que a imagem preencha o espaço */
 }
 
-.product-item h3, .method-item h3, .step-item h3 {
+.step-item h3 {
     color: var(--green-primary);
     font-size: 1.6em; /* Títulos dos itens maiores */
     margin-bottom: 10px;
 }
-.product-item p, .method-item p, .step-item p {
+.step-item p {
     font-size: 1.05em;
     margin-bottom: 0; /* Remove margem inferior para parágrafos dentro de itens */
 }
-
-/* --- Seção de Produtos (Ajustes) --- */
-/* Ajustes para o item do produto para acomodar o carrossel */
-.product-item {
-    /* display: flex; (Já está acima) */
-    /* flex-direction: column; (Já está acima) */
-    /* align-items: center; (Já está acima) */
-    justify-content: flex-start; /* Alinha ao topo para o carrossel */
-    /* height: 100%; (Já está acima) */
-}
-
-.product-item h3 {
-    margin-top: 0; /* Ajusta a margem superior do título */
-}
-
-.product-item p {
-    flex-grow: 1; /* Permite que o parágrafo ocupe espaço antes do carrossel */
-    margin-bottom: 15px; /* Adiciona espaço entre o texto e o carrossel */
-}
-
-/* --- Seção de Métodos (Ajustes) --- */
-/* Estilo neon do ícone */
-.method-item img {
-    width: 90px; /* Ícones maiores */
-    height: 90px;
-    object-fit: contain;
-    border: 3px solid var(--green-neon-start); /* Borda mais grossa com neon */
-    border-radius: 50%;
-    padding: 12px;
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4); /* Brilho neon ao redor */
-}
-
-/* Ajuste para o method-item para acomodar o carrossel */
-.method-item {
-    /* display: flex; (Já está acima) */
-    /* flex-direction: column; (Já está acima) */
-    /* align-items: center; (Já está acima) */
-    justify-content: center; /* Centraliza verticalmente o conteúdo */
-    /* height: 100%; (Já está acima) */
-    text-align: center; /* Centraliza o texto */
-}
-
-.method-item h3 {
-    margin-top: 15px; /* Espaço entre o carrossel e o título */
-    margin-bottom: 5px;
-}
-
-/* .method-item p { (Já está acima) } */
 
 
 /* --- Seção de Depoimentos (Ajustes) --- */
@@ -435,6 +383,10 @@ p {
 }
 
 /* --- Seção de Benefícios --- */
+#beneficios {
+    background-color: var(--white);
+}
+
 .benefits-list {
     list-style: none;
     text-align: left;
@@ -474,6 +426,132 @@ footer p {
 }
 
 /* =================================================================== */
+/* 4.A. NOVO: SEPARADOR PROVA SOCIAL
+/* =================================================================== */
+.section-proof-separator {
+    background-color: var(--green-primary); /* Verde principal da marca */
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* =================================================================== */
+/* 4.B. NOVO: SEÇÃO DE ÍCONES
+/* =================================================================== */
+#icones-foco {
+    background-color: var(--gray-light); /* Fundo claro */
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
+    gap: 20px;
+    text-align: center;
+    align-items: start;
+    margin-top: 40px; /* Espaço do título para os ícones */
+}
+.icon-item {
+    /* Sem card, só ícone + texto */
+}
+.icon-item img {
+    width: 80px; /* Tamanho do ícone */
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.icon-item:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+.icon-item h3 {
+    font-size: 1.2em; /* Título menor para ícones */
+    color: var(--gray-dark);
+    font-weight: 600;
+}
+
+/* =================================================================== */
+/* 4.C. NOVO: SEÇÃO DE SOFTWARE
+/* =================================================================== */
+#software-detalhes {
+    background-color: var(--white); /* Fundo branco */
+}
+.software-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left;
+}
+.feature-item {
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden; /* Para a imagem grudar no topo */
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease;
+    background-color: var(--white);
+}
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+.feature-item img {
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens */
+    object-fit: cover;
+    display: block;
+}
+.feature-item h3 {
+    font-size: 1.5em;
+    color: var(--green-primary);
+    padding: 20px 20px 0 20px;
+}
+.feature-item p {
+    font-size: 1em;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 0;
+}
+
+/* =================================================================== */
+/* 4.D. NOVO: SEÇÃO DEMO/CONTATO
+/* =================================================================== */
+#contato {
+    background-color: var(--gray-light); /* Fundo claro para o form */
+}
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0 auto;
+    display: grid;
+    gap: 15px;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus {
+    outline: 2px solid var(--green-primary);
+    border-color: var(--green-primary);
+}
+/* Botão do formulário usa o .btn-primary */
+.contact-form .btn-primary {
+    width: 100%;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+
+/* =================================================================== */
 /* 5. RESPONSIVIDADE (MEDIA QUERIES)
 /* =================================================================== */
 
@@ -486,11 +564,14 @@ footer p {
     }
     .hero-section {
         padding: 100px 20px;
-        /* Reseta a altura mínima em telas menores se o conteúdo ficar estranho */
-        /* min-height: auto; */ 
     }
     .section {
         padding: 60px 0;
+    }
+    /* Ajuste grid ícones */
+    .icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
     }
 }
 
@@ -512,15 +593,11 @@ footer p {
         padding: 15px 25px;
         font-size: 1.1em;
     }
-    .product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+    .testimonials-grid, .steps-grid {
         gap: 25px;
     }
-    .product-item, .method-item, .testimonial-item, .step-item {
+    .testimonial-item, .step-item {
         padding: 25px;
-    }
-    .method-item img {
-        width: 70px;
-        height: 70px;
     }
     .step-item img {
         width: 100px;
@@ -555,6 +632,26 @@ footer p {
         width: 100%; /* Permite que a imagem se ajuste ao container */
         max-width: 350px; /* Limita o tamanho máximo no celular */
     }
+
+    /* --- Responsividade da Barra Fixa --- */
+    .top-bar-content {
+        justify-content: center; /* Centraliza botão */
+    }
+    .top-bar-phone {
+        display: none; /* Esconde o telefone no celular */
+    }
+    .btn-orcamento-top {
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+    /* A LINHA DE 'padding-top' DO BODY FOI REMOVIDA DAQUI */
+
+    /* --- Responsividade dos Ícones --- */
+    .icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -580,11 +677,19 @@ footer p {
         margin-right: auto;
         display: block;
     }
-    .product-grid, .methods-grid, .testimonials-grid, .steps-grid {
+    .testimonials-grid, .steps-grid {
         grid-template-columns: 1fr;
     }
     .testimonial-item {
         padding-left: 15px;
+    }
+
+    /* --- Responsividade dos Ícones --- */
+    .icon-grid {
+        gap: 25px;
+    }
+    .icon-item h3 {
+        font-size: 1.1em;
     }
 }
 
@@ -647,4 +752,31 @@ footer p {
 .scroll-down-arrow:hover {
     animation-play-state: paused; /* Pausa a animação ao passar o mouse */
     opacity: 1;
+}
+
+/* =================================================================== */
+/* 7. RESPONSIVIDADE (MONITORES GRANDES - 2K/4K)
+/* =================================================================== */
+
+@media (min-width: 1600px) {
+    
+    .container {
+        max-width: 1400px; /* Aumenta o limite de 1200px para 1400px */
+    }
+
+    .hero-text {
+        max-width: 650px; /* Dá mais espaço para o texto */
+    }
+
+    .hero-image {
+        width: 500px; /* Permite a imagem crescer um pouco */
+    }
+
+    h1 {
+        font-size: 4.5em;
+    }
+
+    h2 {
+        font-size: 3em;
+    }
 }
