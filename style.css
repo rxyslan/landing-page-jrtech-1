@@ -4,10 +4,10 @@
 
 /* --- Variáveis de Cores --- */
 :root {
-    --green-dark: #004d2b;      /* NOVO: Verde escuro para o Hero */
-    --green-primary: #01A85A; /* Um verde vibrante */
+    --green-dark: #004d2b;      /* NOVO: Verde escuro para o Hero e fundo do gradiente */
+    --green-primary: #01A85A; /* Um verde vibrante (usado como cor da moldura) */
     --green-neon-start: #ffee00; /* Início do gradiente neon */
-    --green-neon-end: #fff23c;   /* Fim do gradiente neon */
+    --green-neon-end: #fff23c;    /* Fim do gradiente neon */
     --gray-light: #f9f9f9; /* Mais claro para seções */
     --gray-medium: #e0e0e0;
     --gray-dark: #333333;
@@ -30,7 +30,8 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    /* O padding-top será adicionado via JavaScript */
+    /* AJUSTE: Garante espaço para a barra fixa no topo */
+    padding-top: calc(40px + env(safe-area-inset-top)); 
 }
 
 /* --- Tipografia Global --- */
@@ -87,12 +88,13 @@ p {
 }
 
 /* =================================================================== */
-/* 2.B. BARRA DO TOPO FIXA (AGORA CLARA E COM SAFE-AREA)
+/* 2.B. BARRA DO TOPO FIXA (CLARA E COM SAFE-AREA)
 /* =================================================================== */
 .top-bar-fixed {
     background-color: var(--white); 
     color: var(--gray-dark);
-    padding: 10px 0;
+    /* Adicionado padding-bottom para consistência com o body padding-top */
+    padding: 10px 0; 
     position: fixed;
     width: 100%;
     top: 0;
@@ -100,8 +102,9 @@ p {
     z-index: 1000;
     box-shadow: 0 2px 10px var(--shadow-light); 
     
-    /* NOVO: GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
+    /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
     padding-top: calc(10px + env(safe-area-inset-top)); 
+    padding-bottom: 10px; /* Adicionado para calcular a altura total da barra */
 }
 .top-bar-content {
     display: flex;
@@ -141,7 +144,8 @@ p {
 /* --- Botões --- */
 .btn-primary {
     display: inline-block;
-    background: var(--green-neon-start);
+    /* AJUSTE: Adiciona Gradiente Neon e Box Shadow de Brilho */
+    background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
     color: var(--gray-dark); 
     padding: 18px 35px; 
     border: none;
@@ -150,13 +154,14 @@ p {
     font-weight: 700; 
     text-decoration: none;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 8px 25px var(--shadow-medium); 
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 230, 0, 0.7), 0 8px 25px var(--shadow-medium); 
 }
 
 .btn-primary:hover {
     transform: translateY(-5px); 
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    /* Brilho aumentado no hover */
+    box-shadow: 0 0 25px rgba(255, 230, 0, 1), 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 .btn-secondary {
@@ -280,7 +285,7 @@ p {
 
 .hero-image {
     flex-shrink: 0; 
-    width: 450px;   
+    width: 450px;    
     max-width: 100%; 
     text-align: center; 
 }
@@ -420,7 +425,7 @@ footer p {
 }
 
 /* =================================================================== */
-/* 4.A. NOVO: SEPARADOR PROVA SOCIAL
+/* 4.A. SEPARADOR PROVA SOCIAL
 /* =================================================================== */
 .section-proof-separator {
     background-color: var(--green-primary); 
@@ -432,7 +437,7 @@ footer p {
 }
 
 /* =================================================================== */
-/* 4.B. NOVO: SEÇÃO DE ÍCONES
+/* 4.B. SEÇÃO DE ÍCONES
 /* =================================================================== */
 #icones-foco {
     background-color: var(--gray-light); 
@@ -469,7 +474,7 @@ footer p {
 }
 
 /* =================================================================== */
-/* 4.C. NOVO: SEÇÃO DE SOFTWARE
+/* 4.C. SEÇÃO DE SOFTWARE
 /* =================================================================== */
 #software-detalhes {
     background-color: var(--white); 
@@ -510,7 +515,7 @@ footer p {
 }
 
 /* =================================================================== */
-/* 4.D. NOVO: SEÇÃO DEMO/CONTATO
+/* 4.D. SEÇÃO DEMO/CONTATO
 /* =================================================================== */
 #contato {
     background-color: var(--gray-light); 
@@ -575,7 +580,8 @@ footer p {
         font-size: 2.5em;
     }
     h2 {
-        font-size: 2em;
+        font-size: 1.8em; /* AJUSTE: Redução para melhor visualização em tablet */
+        margin-bottom: 30px;
     }
     h3 {
         font-size: 1.5em;
@@ -610,7 +616,7 @@ footer p {
     /* --- Hero Específico (Tablet) --- */
     .hero-section {
         min-height: auto; 
-        padding-top: 80px; /* Mais espaço no topo para imagem */
+        padding-top: 80px; 
         padding-bottom: 60px;
     }
     
@@ -688,7 +694,7 @@ footer p {
     h2 {
         font-size: 1.6em; 
     }
-    /* NOVO: Redução específica para o texto de suporte do Hero */
+    /* Redução específica para o texto de suporte do Hero */
     .hero-section p {
         font-size: 0.9em; /* Texto menor para maximizar espaço */
         line-height: 1.5;
@@ -701,14 +707,14 @@ footer p {
         display: block; /* Flexbox removido para melhor controle de blocos */
     }
 
-    /* NOVO: Ajusta o Hero Content para mobile */
+    /* Ajusta o Hero Content para mobile */
     .hero-content {
         flex-direction: column; /* Garante imagem acima do texto */
         text-align: center;
         gap: 0; /* Remove gap quando imagem está acima */
     }
 
-    /* NOVO: Ordem da imagem e texto no mobile */
+    /* Ordem da imagem e texto no mobile */
     .hero-image {
         order: 1; /* Imagem primeiro */
         margin-bottom: 20px; /* Espaço entre imagem e H1 */
@@ -753,8 +759,9 @@ footer p {
         gap: 15px;
     }
     .icon-item {
-        min-width: 50%; /* Ocupa 50% para garantir 2 por tela em celulares muito pequenos */
-        max-width: 50%; 
+        /* AJUSTE: Garante 2 itens na tela (50% - metade do gap) */
+        min-width: calc(50% - 7.5px); 
+        max-width: calc(50% - 7.5px); 
     }
     
     .icon-item h3 {
@@ -769,15 +776,15 @@ footer p {
 /* --- Animação de pulso (SUAVIZADA) --- */
 @keyframes pulse-down {
     0% {
-        transform: translateY(0);
+        transform: translateY(0) translateX(-50%);
         opacity: 0.8;
     }
     50% {
-        transform: translateY(5px); 
+        transform: translateY(5px) translateX(-50%); 
         opacity: 1;
     }
     100% {
-        transform: translateY(0);
+        transform: translateY(0) translateX(-50%);
         opacity: 0.8;
     }
 }
@@ -837,4 +844,83 @@ footer p {
     h2 {
         font-size: 3em;
     }
+}
+
+/* =================================================================== */
+/* 8. NOVO: COMPONENTE DE MOLDURA CIRCULAR VERDE
+/* (Use a estrutura HTML frame-container-row para aplicá-lo)
+/* =================================================================== */
+
+.frame-container-row {
+    display: flex; /* Coloca os itens lado a lado */
+    justify-content: space-around; 
+    align-items: flex-start; 
+    padding: 40px 0;
+    margin-top: 30px;
+}
+
+.frame-item-wrapper {
+    display: flex;
+    flex-direction: column; /* Organiza o círculo e o texto verticalmente */
+    align-items: center;
+    text-align: center;
+    width: 200px; 
+    margin: 0 15px;
+}
+
+/* O Círculo Externo (A Borda Fina Cinza) */
+.outer-ring {
+    /* Define o tamanho e forma */
+    width: 140px; /* Tamanho da moldura externa */
+    height: 140px;
+    border-radius: 50%; 
+    border: 1px solid var(--gray-medium); /* Borda externa mais sutil */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Para posicionar a linha de conexão */
+}
+
+/* O Círculo Interno (O Fundo Verde Sólido) */
+.inner-fill-green {
+    /* O tamanho do círculo de fundo */
+    width: 90%; 
+    height: 90%;
+    border-radius: 50%;
+    /* Fundo verde usando seu gradiente */
+    background: radial-gradient(circle, var(--green-primary) 0%, var(--green-dark) 100%); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px var(--shadow-medium);
+}
+
+/* Estilo para a Imagem dentro do Círculo */
+.product-image-centered {
+    max-width: 80%; 
+    max-height: 80%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Linha de Conexão Simples (Simulação da linha reta) */
+.outer-ring::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; /* Posição de onde a linha sai */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 30px; /* Comprimento da linha */
+    background-color: var(--gray-medium); /* Cor da linha */
+}
+
+/* Estilo para o Texto Descritivo abaixo da Moldura */
+.frame-item-wrapper p {
+    margin-top: 40px; /* Aumentado para dar espaço para a linha de conexão */
+    font-size: 1.15em;
+    font-weight: 600;
+    color: var(--gray-dark);
 }
