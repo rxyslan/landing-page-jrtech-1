@@ -4,7 +4,7 @@
 
 /* --- Variáveis de Cores --- */
 :root {
-    --green-dark: #004d2b;      /* NOVO: Verde escuro para o Hero e fundo do gradiente */
+    --green-dark: #004d2b;      /* Verde escuro para o Hero e fundo do gradiente */
     --green-primary: #01A85A; /* Um verde vibrante (usado como cor da moldura) */
     --green-neon-start: #ffee00; /* Início do gradiente neon */
     --green-neon-end: #fff23c;    /* Fim do gradiente neon */
@@ -686,48 +686,63 @@ footer p {
 
 @media (max-width: 576px) {
     /* --- Tipografia Agresiva para Leitura --- */
-    /* H1 REDUZIDO AINDA MAIS para caber na tela pequena */
     h1 {
         font-size: 1.4em; 
-        margin-top: 20px; /* Espaço após a imagem */
+        margin-top: 15px; /* AJUSTE: Diminui o espaço após a imagem */
     }
     h2 {
         font-size: 1.6em; 
     }
     /* Redução específica para o texto de suporte do Hero */
     .hero-section p {
-        font-size: 0.9em; /* Texto menor para maximizar espaço */
-        line-height: 1.5;
-        margin-bottom: 25px; /* Reduz o espaço antes do botão */
+        font-size: 0.9em; 
+        line-height: 1.4; /* AJUSTE: Linha um pouco mais compacta */
+        margin-bottom: 15px; /* AJUSTE: Diminui o espaço antes do botão */
     }
     
     .hero-section {
-        padding: 40px 15px; /* PADDING MÍNIMO para o Hero */
-        min-height: auto; /* Permite que a altura se ajuste ao conteúdo */
-        display: block; /* Flexbox removido para melhor controle de blocos */
+        padding: 30px 15px; /* AJUSTE: Diminui o padding vertical no Hero */
+        min-height: auto; 
+        display: block; 
     }
 
     /* Ajusta o Hero Content para mobile */
     .hero-content {
-        flex-direction: column; /* Garante imagem acima do texto */
+        flex-direction: column; 
         text-align: center;
-        gap: 0; /* Remove gap quando imagem está acima */
+        gap: 0; 
     }
 
     /* Ordem da imagem e texto no mobile */
     .hero-image {
-        order: 1; /* Imagem primeiro */
-        margin-bottom: 20px; /* Espaço entre imagem e H1 */
+        order: 1; 
+        margin-bottom: 15px; /* AJUSTE: Diminui o espaço entre imagem e H1 */
         width: 100%;
-        max-width: 300px; /* Tamanho da imagem no mobile */
+        max-width: 250px; /* AJUSTE: Diminui a largura da imagem para um visual mais compacto */
         margin-left: auto;
         margin-right: auto;
     }
+    
+    .hero-visual-image {
+        max-height: 200px; /* NOVO: Limita a altura da imagem */
+    }
 
     .hero-text {
-        order: 2; /* Texto depois */
+        order: 2; 
         text-align: center;
-        max-width: 100%; /* Ajusta para largura total */
+        max-width: 100%; 
+    }
+    
+    .btn-primary, .btn-secondary {
+        /* AJUSTE: Padding menor no botão para economizar espaço vertical */
+        padding: 12px 20px; 
+        font-size: 1.0em; /* Fonte do botão ligeiramente menor */
+        margin-top: 5px; /* Reduz margem superior do botão */
+        width: 100%;
+        max-width: 300px; 
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .section {
@@ -736,18 +751,11 @@ footer p {
     .container {
         padding: 0 15px;
     }
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        max-width: 300px; 
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
     .testimonials-grid, .steps-grid {
         grid-template-columns: 1fr;
     }
     .testimonial-item {
-        text-align: left; /* Garante alinhamento esquerdo mesmo no menor celular */
+        text-align: left; 
         padding-left: 15px;
     }
 
