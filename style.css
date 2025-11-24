@@ -726,8 +726,8 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 90%;  
-    max-height: 90%; 
+    max-width: 125%;  
+    max-height: 125%; 
     height: auto;
     object-fit: contain;
 }
