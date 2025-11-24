@@ -266,13 +266,13 @@ p {
     /* Garante o layout de 5 colunas no desktop */
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
-    gap: 20px;
+    gap: 30px; /* AUMENTADO: Mais espaço entre as molduras */
     text-align: center;
     align-items: start;
     margin-top: 40px; 
     
     /* Ajuste de Centralização */
-    max-width: 1000px; 
+    max-width: 1050px; /* Aumentado para acomodar o gap maior */
     margin-left: auto;
     margin-right: auto;
 }
@@ -287,18 +287,18 @@ p {
     font-size: 1.2em; 
     color: var(--gray-dark);
     font-weight: 600;
-    margin-bottom: 5px; /* NOVO: Reduz margem para aproximar da descrição */
+    margin-bottom: 5px; 
 }
 
-/* NOVO: Estilo para a descrição dos produtos (h4) */
+/* OTIMIZAÇÃO: Estilo para a descrição dos produtos (h4) */
 .icon-item h4 { 
-    font-size: 0.9em;
-    color: var(--text-color);
+    font-size: 0.95em; /* Reduzido e otimizado */
+    color: var(--text-color); 
     font-weight: 400;
-    margin-top: 0; /* Remove margem de h4 para encostar no h3 */
-    line-height: 1.4;
-    min-height: 60px; /* Garante que os cards tenham altura mínima para alinhamento */
-    padding: 0 5px; /* Pequeno padding horizontal para não grudar nas bordas */
+    margin-top: 0; 
+    line-height: 1.6; /* Aumentado para melhor leitura */
+    padding: 0 5px; 
+    margin-bottom: 20px; 
 }
 
 /* --- Separador de Prova Social --- */
@@ -726,7 +726,7 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 125%;  
+    max-width: 124%;  
     max-height: 125%; 
     height: auto;
     object-fit: contain;
