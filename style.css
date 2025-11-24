@@ -286,22 +286,19 @@ p {
 .icon-item h3 {
     font-size: 1.2em; 
     color: var(--gray-dark);
-    font-weight: 700; /* Garante o negrito no título principal */
+    font-weight: 600;
     margin-bottom: 5px; 
-    line-height: 1.3;
 }
 
 /* OTIMIZAÇÃO: Estilo para a descrição dos produtos (h4) */
 .icon-item h4 { 
     font-size: 0.95em; 
     color: var(--text-color); 
-    font-weight: 400; /* Fonte mais leve para a descrição */
+    font-weight: 400;
     margin-top: 0; 
-    line-height: 1.6; 
+    line-height: 1.6; /* Aumentado para melhor leitura */
     padding: 0 5px; 
     margin-bottom: 20px; 
-    /* Removendo a altura mínima para que o texto mais curto não cause espaço vazio */
-    /* min-height: 60px; */ 
 }
 
 /* --- Separador de Prova Social --- */
