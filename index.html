@@ -1,733 +1,215 @@
-/* =================================================================== */
-/* 1. CONFIGURAÇÕES GLOBAIS
-/* =================================================================== */
-
-/* --- Variáveis de Cores --- */
-:root {
-    --green-dark: #004d2b;      
-    --green-primary: #01A85A; 
-    --green-neon-start: #ffee00; 
-    --green-neon-end: #fff23c;    
-    --gray-light: #f9f9f9; 
-    --gray-medium: #e0e0e0;
-    --gray-dark: #333333;
-    --text-color: #444444; 
-    --white: #ffffff;
-    --shadow-light: rgba(0, 0, 0, 0.08); 
-    --shadow-medium: rgba(0, 0, 0, 0.15);
-    --version-notice-height: 25px; 
-}
-
-/* --- Reset Básico --- */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-/* --- Estilos do Body (AJUSTADO PARA INCLUIR O AVISO DE VERSÃO) --- */
-body {
-    font-family: 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    /* O padding deve compensar o Aviso de Versão + a Barra Fixa */
-    padding-top: calc(var(--version-notice-height) + 40px + env(safe-area-inset-top)); 
-}
-
-/* --- Tipografia Global --- */
-h1, h2, h3 {
-    color: var(--gray-dark);
-    font-weight: 700;
-    line-height: 1.2;
-}
-
-h1 {
-    font-size: 3.8em; 
-    margin-bottom: 25px;
-}
-
-h2 {
-    font-size: 2.8em;
-    margin-bottom: 40px; 
-}
-
-h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-
-p {
-    margin-bottom: 20px;
-    font-size: 1.15em; 
-    line-height: 1.7;
-}
-
-/* =================================================================== */
-/* 2. LAYOUT E SEÇÕES GERAIS
-/* =================================================================== */
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px; 
-}
-
-.section {
-    padding: 80px 0; 
-    text-align: center;
-    position: relative; 
-}
-
-/* Seções pares e ímpares */
-.section:nth-of-type(odd) { 
-    background-color: var(--gray-light);
-}
-.section:nth-of-type(even) { 
-    background-color: var(--white);
-}
-
-/* =================================================================== */
-/* 2.C. AVISO DE VERSÃO (FIXO NO TOPO)
-/* =================================================================== */
-.version-notice {
-    background-color: black;
-    color: white;
-    font-size: 0.8em;
-    font-weight: 600;
-    text-align: center;
-    padding: 5px 0;
-    width: 100%;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    z-index: 1005; 
-}
-
-/* =================================================================== */
-/* 2.B. BARRA DO TOPO FIXA (AJUSTADA PARA FICAR ABAIXO DO AVISO)
-/* =================================================================== */
-.top-bar-fixed {
-    background-color: var(--white); 
-    color: var(--gray-dark);
-    padding: 10px 0; 
-    position: fixed;
-    width: 100%;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px var(--shadow-light); 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    /* Posiciona a barra logo abaixo do Aviso de Versão */
-    top: var(--version-notice-height); 
+    <title>Sistema de Controle de Ponto e Gestão de Pessoas | ifPonto</title>
     
-    /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
-    padding-top: calc(10px + env(safe-area-inset-top)); 
-    padding-bottom: 10px; 
-}
-.top-bar-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.top-bar-phone {
-    font-size: 1.1em;
-    font-weight: 600;
-    color: var(--gray-dark);
-}
-.btn-orcamento-top {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
-    color: var(--gray-dark); 
-    padding: 8px 15px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 0.9em;
-    transition: transform 0.2s ease;
-}
-.btn-orcamento-top:hover {
-    transform: scale(1.05);
-}
+    <meta name="description" content="O melhor sistema de controle de ponto para sua empresa. Software, app e relógios para gestão de pessoas 100% legal. Elimine riscos trabalhistas. Peça um orçamento.">
 
-
-/* =================================================================== */
-/* 3. COMPONENTES REUTILIZÁVEIS
-/* =================================================================== */
-
-/* --- Botões --- */
-.btn-primary {
-    display: inline-block;
-    background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
-    color: var(--gray-dark); 
-    padding: 18px 35px; 
-    border: none;
-    border-radius: 50px;
-    font-size: 1.3em;
-    font-weight: 700; 
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 230, 0, 0.7), 0 8px 25px var(--shadow-medium); 
-}
-
-.btn-primary:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 0 25px rgba(255, 230, 0, 1), 0 12px 30px rgba(0, 0, 0, 0.4);
-}
-
-.btn-secondary {
-    display: inline-block;
-    background-color: transparent;
-    color: var(--green-primary);
-    border: 2px solid var(--green-primary);
-    padding: 15px 30px;
-    border-radius: 50px;
-    font-size: 1.2em;
-    font-weight: 600;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    margin-top: 20px;
-}
-
-.btn-secondary:hover {
-    background-color: var(--green-primary);
-    color: var(--white);
-    border-color: var(--green-primary); 
-}
-
-
-/* =================================================================== */
-/* 4. ESTILOS DE SEÇÃO ESPECÍFICOS
-/* =================================================================== */
-
-/* --- Hero Section --- */
-.hero-section {
-    background: var(--green-dark); 
-    color: var(--white);
-    position: relative;
-    overflow: hidden;
-    min-height: 100vh; 
-    display: flex; 
-    align-items: center; 
-    padding: 40px 20px; 
-}
-
-.hero-section h1 {
-    color: var(--white);
-    font-size: 4em; 
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); 
-}
-
-.hero-section p {
-    color: var(--white);
-    font-size: 1.4em;
-    margin-bottom: 50px; 
-    opacity: 0.95;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-visual-image {
-    max-width: 100%; 
-    height: auto; 
-    border-radius: 10px; 
-}
-
-.hero-content {
-    display: flex;
-    align-items: center; 
-    justify-content: space-between; 
-    gap: 40px; 
-}
-
-.hero-text {
-    flex: 1; 
-    max-width: 600px; 
-    text-align: left; 
-}
-
-.hero-image {
-    flex-shrink: 0; 
-    width: 450px;    
-    max-width: 100%; 
-    text-align: center; 
-}
-
-/* --- Seção de Ícones (OTIMIZADO PARA 5 MOLDURAS E CENTRALIZADO) --- */
-#icones-foco {
-    background-color: var(--gray-light); 
-    padding-top: 80px;
-    padding-bottom: 80px;
-}
-.icon-grid {
-    /* Garante o layout de 5 colunas no desktop */
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    gap: 20px;
-    text-align: center;
-    align-items: start;
-    margin-top: 40px; 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    /* Ajuste de Centralização */
-    max-width: 1000px; 
-    margin-left: auto;
-    margin-right: auto;
-}
-.icon-item img {
-    transition: transform 0.3s ease; 
-}
-.icon-item:hover img {
-    opacity: 1;
-    transform: scale(1.05);
-}
-.icon-item h3 {
-    font-size: 1.2em; 
-    color: var(--gray-dark);
-    font-weight: 600;
-}
-.icon-item h4 { 
-    font-size: 0.9em;
-    color: var(--text-color);
-    font-weight: 400;
-    margin-top: 5px;
-    line-height: 1.4;
-}
+    <link rel="stylesheet" href="style.css"> 
+    <script src="script.js" defer></script>
+</head>
+<body>
 
-/* --- Separador de Prova Social --- */
-.section-proof-separator {
-    background-color: var(--green-primary); 
-    color: var(--white);
-    padding: 20px 0;
-    text-align: center;
-    font-size: 1.2em;
-    font-weight: 600;
-}
+    <div class="version-notice">
+        Versão. 254 atualizado 24/11 02:53
+    </div>
 
-/* =================================================================== */
-/* 4.C. ESTILOS DE SEÇÕES FALTANTES (BENEFÍCIOS, DEPOIMENTOS, SOFTWARE, CONTATO)
-/* =================================================================== */
+    <div class="top-bar-fixed">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-phone">
+                    📞 (13) 3030-4040 
+                </div>
+                <a href="#contato" class="btn-orcamento-top">
+                    Faça Seu Teste Grátis 
+                </a>
+            </div>
+        </div>
+    </div>
 
-/* --- Seção de Benefícios (AJUSTADO PARA ALINHAMENTO LIMPO) --- */
-#beneficios {
-    background-color: var(--white);
-}
-
-.benefits-list {
-    list-style: none;
-    text-align: left;
-    max-width: 800px;
-    margin: 40px auto 60px auto; 
-    padding-left: 0; 
-}
-
-.benefits-list li {
-    font-size: 1.25em; 
-    margin-bottom: 25px; /* MAIS ESPAÇO vertical entre os itens */
-    display: flex;
-    align-items: flex-start; /* Alinha o conteúdo ao topo do item */
-    color: var(--gray-dark);
-}
-
-.benefits-list li .icon {
-    font-size: 1.6em; 
-    color: var(--green-primary); 
-    margin-right: 15px; /* Espaço entre o ícone e o texto */
-    line-height: 1;
-    flex-shrink: 0; 
-    transform: translateY(2px); /* Alinha o check no topo da primeira linha de texto */
-}
-
-.benefits-list li strong {
-    color: var(--gray-dark); 
-    font-weight: 700;
-    /* AJUSTE FINAL: Garante a margem para separar o título em negrito do texto */
-    margin-right: 5px; 
-}
-
-
-/* --- Seção de Depoimentos (Cases) --- */
-#cases {
-    background-color: var(--gray-light);
-}
-
-.testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px; 
-    margin-top: 60px;
-    justify-content: center;
-}
-
-.testimonial-item {
-    background-color: var(--white);
-    padding: 35px; 
-    border-radius: 12px; 
-    box-shadow: 0 6px 20px var(--shadow-light); 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%; 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    text-align: left;
-    border-left: 6px solid var(--green-neon-start); 
-    padding-left: 25px; 
-}
-
-.testimonial-item:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 10px 25px var(--shadow-medium);
-}
-
-.testimonial-item p {
-    font-style: italic;
-    font-size: 1.15em;
-    color: var(--gray-dark);
-    margin-bottom: 15px;
-}
-
-.testimonial-item h4 {
-    font-weight: 700; 
-    color: var(--green-primary);
-    font-size: 1.1em;
-}
-
-
-/* --- Seção de Software Detalhes --- */
-#software-detalhes {
-    background-color: var(--white); 
-}
-.software-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    text-align: left;
-}
-.feature-item {
-    border: 1px solid var(--gray-light);
-    border-radius: 12px;
-    overflow: hidden; 
-    box-shadow: 0 4px 15px var(--shadow-light);
-    transition: transform 0.3s ease;
-    background-color: var(--white);
-}
-.feature-item:hover {
-    transform: translateY(-5px);
-}
-.feature-item img {
-    width: 100%;
-    height: 200px; 
-    object-fit: cover;
-    display: block;
-}
-.feature-item h3 {
-    font-size: 1.5em;
-    color: var(--green-primary);
-    padding: 20px 20px 0 20px;
-}
-.feature-item p {
-    font-size: 1em;
-    padding: 0 20px 20px 20px;
-    margin-bottom: 0;
-}
-
-/* --- Seção de Contato/Demo --- */
-#contato {
-    background-color: var(--gray-light); 
-}
-.contact-form {
-    max-width: 600px;
-    margin: 40px auto 0 auto;
-    display: grid;
-    gap: 15px;
-}
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form input[type="tel"] {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid var(--gray-medium);
-    border-radius: 8px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 1em;
-}
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form input[type="tel"]:focus {
-    outline: 2px solid var(--green-primary);
-    border-color: var(--green-primary);
-}
-.contact-form .btn-primary {
-    width: 100%;
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-
-/* --- Footer --- */
-footer {
-    background-color: var(--gray-dark);
-    color: var(--white);
-    padding: 40px 20px; 
-    text-align: center;
-    font-size: 1em;
-}
-
-footer p {
-    margin: 0;
-    color: var(--white); 
-}
-
-
-/* =================================================================== */
-/* 5. RESPONSIVIDADE (MEDIA QUERIES)
-/* =================================================================== */
-
-@media (max-width: 992px) {
-    h1 {
-        font-size: 3.2em;
-    }
-    h2 {
-        font-size: 2.4em;
-    }
-    .hero-section {
-        padding: 80px 20px; 
-    }
-    .section {
-        padding: 50px 0; 
-    }
-    /* AJUSTE PARA TABLET: 3 colunas para a grade de ícones (para 5 itens) */
-    .icon-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        max-width: 800px; 
-    }
-    .testimonials-grid { /* Ajuste para Depoimentos em Tablet */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-}
-
-@media (max-width: 768px) {
+    <header class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                
+                <div class="hero-text">
+                    <h1>SISTEMA DE CONTROLE DE PONTO: DO CELULAR AO COMPUTADOR</h1>
+                    <p>Gerencie sua equipe com a plataforma líder em <strong>sistema de ponto</strong> e <strong>gestão de pessoas</strong> no Brasil. Uma solução completa, segura e 100% alinhada à legislação de jornada de trabalho.</p>
+                    
+                    <a href="#contato" class="btn-primary">RECEBA JÁ SEU ORÇAMENTO</a>
+                </div>
     
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        font-size: 1.8em; 
-        margin-bottom: 30px;
-    }
+                <div class="hero-image">
+                    <img src="imagens/1761893754-65500309-607x607-main-img.webp" alt="Demonstração do sistema de controle de ponto ifPonto em app e relógio" class="hero-visual-image">
+                </div>
     
-    /* Estilos do Hero em 768px */
-    .hero-content {
-        flex-direction: column; 
-        text-align: center; 
-    }
-    .hero-text {
-        order: 2; 
-    }
-    .hero-image {
-        order: 1; 
-    }
+            </div>
+        </div>
 
-    /* Oculta o telefone e expande o botão no topo */
-    .top-bar-content {
-        justify-content: center; 
-    }
-    .top-bar-phone {
-        display: none; 
-    }
-    .btn-orcamento-top {
-        flex-grow: 1;
-        text-align: center;
-        justify-content: center;
-    }
+        <a href="#icones-foco" class="scroll-down-arrow" aria-label="Rolar para a próxima seção"></a>
+    </header>
+
+    <section class="section-proof-separator">
+        <div class="container">
+            +5.000 Clientes Satisfeitos com nosso <strong>Sistema de Ponto</strong> | +15.000 Colaboradores Gerenciados
+        </div>
+    </section>
     
-    /* CARROSSEL DELICADO (AJUSTE PARA MOBILE/TABLET) */
-    .icon-grid {
-        grid-template-columns: none; 
-        display: flex; 
-        overflow-x: scroll; 
-        scroll-snap-type: x mandatory; 
-        justify-content: flex-start;
-        gap: 20px;
-        padding-bottom: 10px; 
-        
-        max-width: none;
-        margin-left: -20px; 
-        margin-right: 0;
-        padding-left: 20px;
-        padding-right: 20px; 
-    }
-    .icon-item {
-        min-width: 45%; 
-        max-width: 45%; 
-        flex-shrink: 0; 
-        scroll-snap-align: start; 
-    }
-    .icon-grid::-webkit-scrollbar {
-        height: 0px; 
-    }
-}
+    <section id="icones-foco" class="section">
+        <div class="container">
+            <h2>Conheça a Solução Completa de Controle de Ponto</h2>
 
-@media (max-width: 576px) {
+            <div class="icon-grid">
+                
+                <div class="icon-item frame-item-wrapper">
+                    <div class="outer-ring">
+                        <div class="inner-fill-green">
+                            <img src="imagens/laptop-dark-front-tela-ifponto.webp" alt="Ícone do software de controle de ponto" class="product-image-centered">
+                        </div>
+                    </div>
+                    <h3>Software de Controle de Ponto</h3>
+                </div>
+                
+                <div class="icon-item frame-item-wrapper">
+                    <div class="outer-ring">
+                        <div class="inner-fill-green">
+                            <img src="imagens/mockup-celular-ifponto-cell-2024.webp" alt="Ícone do aplicativo de ponto mobile" class="product-image-centered">
+                        </div>
+                    </div>
+                    <h3>App de Ponto Mobile</h3>
+                </div>
+                
+                <div class="icon-item frame-item-wrapper">
+                    <div class="outer-ring">
+                        <div class="inner-fill-green">
+                            <img src="imagens/idfacemax.PNG" alt="Ícone do relógio de ponto iDFace Max" class="product-image-centered">
+                        </div>
+                    </div>
+                    <h3>Relógio de Ponto (iDFace Max)</h3>
+                </div>
+
+                <div class="icon-item frame-item-wrapper">
+                    <div class="outer-ring">
+                        <div class="inner-fill-green">
+                            <img src="imagens/idface.PNG" alt="Ícone do relógio de ponto facial iDFace" class="product-image-centered">
+                        </div>
+                    </div>
+                    <h3>Relógio de Ponto (iDFace)</h3>
+                </div>
+
+                <div class="icon-item frame-item-wrapper">
+                    <div class="outer-ring">
+                        <div class="inner-fill-green">
+                            <img src="imagens/rep-idclass-frontal-facial-list.webp" alt="Ícone do relógio de ponto iDClass Facial" class="product-image-centered">
+                        </div>
+                    </div>
+                    <h3>Relógio de Ponto (iDClass Facial)</h3>
+                    <h4>O REP-C iDClass é equipado com recursos de identificação avançados, incluindo leitura de impressão digital, cartão de proximidade e reconhecimento facial.</h4>
+                </div>
+                
+            </div>
+            
+        </div>
+    </section>
+
+    <section id="beneficios" class="section">
+        <div class="container">
+            <h2>Vantagens do Nosso Sistema de Ponto</h2>
+            <ul class="benefits-list">
+                <li>
+                    <span class="icon">✔</span>
+                    <strong>Segurança Jurídica:</strong> 
+                    Nosso sistema de controle está 100% alinhado com a legislação e portarias do MTE.
+                </li>
+                <li>
+                    <span class="icon">✔</span>
+                    <strong>Gestão de Ponto Completa:</strong> 
+                    Controle tudo em um só lugar, do hardware (relógio) ao software de ponto na nuvem.
+                </li>
+                <li>
+                    <span class="icon">✔</span>
+                    <strong>Alta Tecnologia no Registro de Ponto:</strong> 
+                    Utilize o que há de mais moderno em biometria, reconhecimento facial e gestão mobile.
+                </li>
+                <li>
+                    <span class="icon">✔</span>
+                    <strong>Suporte Especializado:</strong> 
+                    O melhor suporte para seu controle de ponto em todo o território nacional.
+                </li>
+            </ul>
+            <a href="#contato" class="btn-secondary">QUERO SABER MAIS</a>
+        </div>
+    </section>
+
+
+    <section id="cases" class="section">
+        <div class="container">
+            <h2>O que nossos clientes dizem sobre nosso Controle de Ponto</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <p>"Trabalho já alguns bons anos com a JrTech, são maravilhosos, desde o comercial, pós venda, suporte técnico, enfim... todos são super competentes, rápidos no atendimento, e o <strong>sistema</strong> então, é de ponta, fácil de operar, atende a todas as nossas expectativas, super indico."</p>
+                    <h4>Diane Denobile (RCM – Administração de Condomínios)</h4>
+                </div>
+
+                <div class="testimonial-item">
+                    <p>"Após a contratação da JRtech, o nosso R.H. conseguiu enxergar com a velocidade que o varejo nos obriga, oportunidades que impactam diretamente em redução de despesas... Outra mudança importante foi a rapidez e qualidade das <strong>informações de ponto</strong>, isso facilitou muito o fechamento da folha."</p>
+                    <h4>(Supermercados Joanin)</h4>
+                </div>
+                
+                <div class="testimonial-item">
+                    <p>"Objetivo – Buscava uma solução moderna e centralizada para <strong>controle de ponto</strong> de seus restaurantes e quiosques. Solução – Implementação completa da solução corporativa com <strong>relógio de ponto</strong> + <strong>sistema web</strong> e aplicativo. Resultado – Controle centralizado com relatórios online..."</p>
+                    <h4>(Burgman Santos)</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="software-detalhes" class="section">
+        <div class="container">
+            <h2>Um Software de Controle de Ponto Completo</h2>
+            <div class="software-features">
+                <div class="feature-item">
+                    <img src="imagens/tela-dashboard-relatorio-geral.webp" alt="Dashboard do sistema de controle de ponto">
+                    <h3>Dashboard de Controle de Ponto</h3>
+                    <p>Acompanhe entradas, saídas, faltas e horas extras da <strong>jornada de trabalho</strong> com gráficos fáceis de entender.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="imagens/tela-espelho-de-ponto.webp" alt="Relatórios de ponto para gestão de pessoas">
+                    <h3>Relatórios para Gestão de Pessoas</h3>
+                    <p>Gere mais de 20 tipos de relatórios, incluindo espelho de ponto e banco de horas, 100% dentro da lei.</p>
+                </div>
+                <div class="feature-item">
+                    <img src="imagens/feature-integracao.jpg" alt="Integração do sistema de ponto com folha de pagamento">
+                    <h3>Integração do Sistema de Ponto</h3>
+                    <p>Exporte dados do <strong>controle de ponto</strong> facilmente para seu sistema de folha de pagamento (Dominio, Prosoft, etc).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section">
+        <div class="container">
+            <h2>Solicite uma Demonstração do Sistema de Ponto</h2>
+            <p>Veja na prática como nosso <strong>software de controle de ponto</strong> pode transformar a <strong>gestão de pessoas</strong> da sua empresa. Preencha o formulário e teste grátis.</p>
+            
+            <form class="contact-form">
+                <input type="text" placeholder="Seu Nome Completo" required>
+                <input type="email" placeholder="Seu Melhor Email" required>
+                <input type="tel" placeholder="Seu Telefone (WhatsApp)" required>
+                <button type="submit" class="btn-primary">TESTAR O SISTEMA DE PONTO</button>
+            </form>
+        </div>
+    </section>
     
-    /* --- Tipografia Agresiva para Leitura (CORREÇÃO DE REDIMENSIONAMENTO) --- */
-    h1 {
-        font-size: 1.2em; 
-        margin-top: 15px; 
-        margin-bottom: 5px; 
-    }
-    h2 {
-        font-size: 1.6em; 
-    }
-    .hero-section p {
-        font-size: 0.9em; 
-        line-height: 1.4; 
-        margin-bottom: 15px; 
-    }
-    
-    .hero-section {
-        padding: 20px 15px; 
-        min-height: auto; 
-        display: block; 
-    }
+    <footer>
+        <div class="container">
+            <p>Copyright © 2025 | JrTech - Especialistas em Sistema de Ponto e Gestão de Pessoas - Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
-    /* Imagem e Botões Menores */
-    .hero-image {
-        order: 1; 
-        margin-bottom: 15px; 
-        width: 100%;
-        max-width: 250px; 
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-visual-image {
-        max-height: 200px; 
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 12px 20px; 
-        font-size: 1.0em; 
-        margin-top: 5px; 
-        width: 100%;
-        max-width: 300px; 
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .section {
-        padding: 30px 0; 
-    }
-    .container {
-        padding: 0 15px;
-    }
-    
-    /* Ajuste para molduras/ícones no carrossel mobile (2 por tela) */
-    .icon-item {
-        min-width: calc(50% - 7.5px); 
-        max-width: calc(50% - 7.5px); 
-    }
-}
-
-/* =================================================================== */
-/* 6. COMPONENTE - SETA DE ROLAGEM
-/* =================================================================== */
-
-@keyframes pulse-down {
-    0% {
-        transform: translateY(0) translateX(-50%);
-        opacity: 0.8;
-    }
-    50% {
-        transform: translateY(5px) translateX(-50%); 
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0) translateX(-50%);
-        opacity: 0.8;
-    }
-}
-
-.scroll-down-arrow {
-    position: absolute; 
-    bottom: 30px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    z-index: 10; 
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    animation: pulse-down 2.5s infinite; 
-}
-
-.scroll-down-arrow::after {
-    content: '';
-    display: block;
-    width: 20px; 
-    height: 20px; 
-    border-bottom: 3px solid var(--white);
-    border-right: 3px solid var(--white);
-    transform: rotate(45deg);
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
-}
-
-.scroll-down-arrow:hover {
-    animation-play-state: paused; 
-    opacity: 1;
-}
-
-/* =================================================================== */
-/* 8. COMPONENTE DE MOLDURA CIRCULAR VERDE
-/* =================================================================== */
-
-.frame-item-wrapper {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    text-align: center;
-}
-
-/* O Círculo Externo (A Borda Fina Cinza) */
-.outer-ring {
-    width: 140px; 
-    height: 140px;
-    border-radius: 50%; 
-    border: 1px solid var(--gray-medium); 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative; 
-    margin-bottom: 15px; 
-}
-
-/* O Círculo Interno (O Fundo Verde Sólido) */
-.inner-fill-green {
-    width: 90%; 
-    height: 90%;
-    border-radius: 50%;
-    background: radial-gradient(circle, var(--green-primary) 0%, var(--green-dark) 100%); 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px var(--shadow-medium);
-}
-
-/* Estilo para a Imagem dentro do Círculo */
-.product-image-centered {
-    max-width: 90%;  
-    max-height: 90%; 
-    height: auto;
-    object-fit: contain;
-}
-
-/* Estilo para o Texto Descritivo abaixo da Moldura */
-.frame-item-wrapper h3 {
-    margin-top: 0;
-}
+</body>
+</html>
