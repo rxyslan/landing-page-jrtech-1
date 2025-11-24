@@ -31,7 +31,7 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    /* AJUSTE: O padding deve compensar o Aviso de Versão + a Barra Fixa */
+    /* O padding deve compensar o Aviso de Versão + a Barra Fixa */
     padding-top: calc(var(--version-notice-height) + 40px + env(safe-area-inset-top)); 
 }
 
@@ -88,7 +88,7 @@ p {
 }
 
 /* =================================================================== */
-/* NOVO: 2.C. AVISO DE VERSÃO (FIXO NO TOPO)
+/* 2.C. AVISO DE VERSÃO (FIXO NO TOPO)
 /* =================================================================== */
 .version-notice {
     background-color: black;
@@ -117,7 +117,7 @@ p {
     z-index: 1000;
     box-shadow: 0 2px 10px var(--shadow-light); 
     
-    /* AJUSTE AQUI: Posiciona a barra logo abaixo do Aviso de Versão */
+    /* Posiciona a barra logo abaixo do Aviso de Versão */
     top: var(--version-notice-height); 
     
     /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
@@ -142,7 +142,6 @@ p {
     color: var(--gray-dark); 
     padding: 8px 15px;
     border-radius: 50px;
-    text-decoration: none;
     font-weight: 600;
     font-size: 0.9em;
     transition: transform 0.2s ease;
@@ -257,24 +256,28 @@ p {
     text-align: center; 
 }
 
-/* --- Seção de Ícones (Corrigido: Grid no Desktop, Carrossel no Mobile) --- */
+/* --- Seção de Ícones (OTIMIZADO PARA 5 MOLDURAS E CENTRALIZADO) --- */
 #icones-foco {
     background-color: var(--gray-light); 
     padding-top: 80px;
     padding-bottom: 80px;
 }
 .icon-grid {
-    /* CORREÇÃO: Garante o layout de 5 colunas no desktop */
+    /* Garante o layout de 5 colunas no desktop */
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
     gap: 20px;
     text-align: center;
     align-items: start;
     margin-top: 40px; 
+    
+    /* Ajuste de Centralização */
+    max-width: 1000px; 
+    margin-left: auto;
+    margin-right: auto;
 }
 .icon-item img {
-    opacity: 0.8;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease; 
 }
 .icon-item:hover img {
     opacity: 1;
@@ -285,8 +288,184 @@ p {
     color: var(--gray-dark);
     font-weight: 600;
 }
+.icon-item h4 { 
+    font-size: 0.9em;
+    color: var(--text-color);
+    font-weight: 400;
+    margin-top: 5px;
+    line-height: 1.4;
+}
 
-/* [O resto dos seus estilos de depoimentos, software, etc.] */
+/* --- Separador de Prova Social --- */
+.section-proof-separator {
+    background-color: var(--green-primary); 
+    color: var(--white);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+/* =================================================================== */
+/* 4.C. ESTILOS DE SEÇÕES FALTANTES (BENEFÍCIOS, DEPOIMENTOS, SOFTWARE, CONTATO)
+/* =================================================================== */
+
+/* --- Seção de Benefícios (AJUSTADO PARA ALINHAMENTO LIMPO) --- */
+#beneficios {
+    background-color: var(--white);
+}
+
+.benefits-list {
+    list-style: none;
+    text-align: left;
+    max-width: 800px;
+    margin: 40px auto 60px auto; 
+    padding-left: 0; 
+}
+
+.benefits-list li {
+    font-size: 1.25em; 
+    margin-bottom: 25px; /* MAIS ESPAÇO vertical entre os itens */
+    display: flex;
+    align-items: flex-start; /* Alinha o conteúdo ao topo do item */
+    color: var(--gray-dark);
+}
+
+.benefits-list li .icon {
+    font-size: 1.6em; 
+    color: var(--green-primary); 
+    margin-right: 15px; /* Espaço entre o ícone e o texto */
+    line-height: 1;
+    flex-shrink: 0; 
+    transform: translateY(2px); /* Alinha o check no topo da primeira linha de texto */
+}
+
+.benefits-list li strong {
+    color: var(--gray-dark); 
+    font-weight: 700;
+    /* AJUSTE FINAL: Garante a margem para separar o título em negrito do texto */
+    margin-right: 5px; 
+}
+
+
+/* --- Seção de Depoimentos (Cases) --- */
+#cases {
+    background-color: var(--gray-light);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px; 
+    margin-top: 60px;
+    justify-content: center;
+}
+
+.testimonial-item {
+    background-color: var(--white);
+    padding: 35px; 
+    border-radius: 12px; 
+    box-shadow: 0 6px 20px var(--shadow-light); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    text-align: left;
+    border-left: 6px solid var(--green-neon-start); 
+    padding-left: 25px; 
+}
+
+.testimonial-item:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 10px 25px var(--shadow-medium);
+}
+
+.testimonial-item p {
+    font-style: italic;
+    font-size: 1.15em;
+    color: var(--gray-dark);
+    margin-bottom: 15px;
+}
+
+.testimonial-item h4 {
+    font-weight: 700; 
+    color: var(--green-primary);
+    font-size: 1.1em;
+}
+
+
+/* --- Seção de Software Detalhes --- */
+#software-detalhes {
+    background-color: var(--white); 
+}
+.software-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: left;
+}
+.feature-item {
+    border: 1px solid var(--gray-light);
+    border-radius: 12px;
+    overflow: hidden; 
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform 0.3s ease;
+    background-color: var(--white);
+}
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+.feature-item img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover;
+    display: block;
+}
+.feature-item h3 {
+    font-size: 1.5em;
+    color: var(--green-primary);
+    padding: 20px 20px 0 20px;
+}
+.feature-item p {
+    font-size: 1em;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 0;
+}
+
+/* --- Seção de Contato/Demo --- */
+#contato {
+    background-color: var(--gray-light); 
+}
+.contact-form {
+    max-width: 600px;
+    margin: 40px auto 0 auto;
+    display: grid;
+    gap: 15px;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"] {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid var(--gray-medium);
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form input[type="tel"]:focus {
+    outline: 2px solid var(--green-primary);
+    border-color: var(--green-primary);
+}
+.contact-form .btn-primary {
+    width: 100%;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
 
 /* --- Footer --- */
 footer {
@@ -320,10 +499,14 @@ footer p {
     .section {
         padding: 50px 0; 
     }
-    /* AJUSTE PARA TABLET: 3 colunas para a grade de ícones */
+    /* AJUSTE PARA TABLET: 3 colunas para a grade de ícones (para 5 itens) */
     .icon-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 30px;
+        max-width: 800px; 
+    }
+    .testimonials-grid { /* Ajuste para Depoimentos em Tablet */
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
@@ -366,12 +549,15 @@ footer p {
     .icon-grid {
         grid-template-columns: none; 
         display: flex; 
-        overflow-x: scroll; /* Ativa a rolagem */
-        scroll-snap-type: x mandatory; /* Efeito de parada suave */
+        overflow-x: scroll; 
+        scroll-snap-type: x mandatory; 
         justify-content: flex-start;
         gap: 20px;
         padding-bottom: 10px; 
+        
+        max-width: none;
         margin-left: -20px; 
+        margin-right: 0;
         padding-left: 20px;
         padding-right: 20px; 
     }
@@ -379,7 +565,7 @@ footer p {
         min-width: 45%; 
         max-width: 45%; 
         flex-shrink: 0; 
-        scroll-snap-align: start; /* Ponto de parada */
+        scroll-snap-align: start; 
     }
     .icon-grid::-webkit-scrollbar {
         height: 0px; 
@@ -390,7 +576,7 @@ footer p {
     
     /* --- Tipografia Agresiva para Leitura (CORREÇÃO DE REDIMENSIONAMENTO) --- */
     h1 {
-        font-size: 1.2em; /* Garante o tamanho menor */
+        font-size: 1.2em; 
         margin-top: 15px; 
         margin-bottom: 5px; 
     }
@@ -535,8 +721,8 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 80%; 
-    max-height: 80%;
+    max-width: 90%;  
+    max-height: 90%; 
     height: auto;
     object-fit: contain;
 }
