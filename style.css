@@ -4,18 +4,18 @@
 
 /* --- Variáveis de Cores --- */
 :root {
-    --green-dark: #004d2b;      /* Verde escuro para o Hero e fundo do gradiente */
-    --green-primary: #01A85A; /* Um verde vibrante (usado como cor da moldura) */
-    --green-neon-start: #ffee00; /* Início do gradiente neon */
-    --green-neon-end: #fff23c;    /* Fim do gradiente neon */
-    --gray-light: #f9f9f9; /* Mais claro para seções */
+    --green-dark: #004d2b;      
+    --green-primary: #01A85A; 
+    --green-neon-start: #ffee00; 
+    --green-neon-end: #fff23c;    
+    --gray-light: #f9f9f9; 
     --gray-medium: #e0e0e0;
     --gray-dark: #333333;
-    --text-color: #444444; /* Um pouco mais escuro para melhor legibilidade */
+    --text-color: #444444; 
     --white: #ffffff;
-    --shadow-light: rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    --shadow-light: rgba(0, 0, 0, 0.08); 
     --shadow-medium: rgba(0, 0, 0, 0.15);
-    --version-notice-height: 25px; /* Altura aproximada do aviso (5px padding top/bottom + altura da linha) */
+    --version-notice-height: 25px; 
 }
 
 /* --- Reset Básico --- */
@@ -101,7 +101,7 @@ p {
     position: fixed; 
     top: 0;
     left: 0;
-    z-index: 1005; /* Mais alto que a top-bar-fixed (1000) */
+    z-index: 1005; 
 }
 
 /* =================================================================== */
@@ -138,7 +138,6 @@ p {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Botão usa o gradiente neon */
     background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
     color: var(--gray-dark); 
     padding: 8px 15px;
@@ -151,12 +150,6 @@ p {
 .btn-orcamento-top:hover {
     transform: scale(1.05);
 }
-/* Note: Você não incluiu uma tag <img> dentro do .btn-orcamento-top no seu HTML final,
-   mas se você fizer, este estilo será aplicado: */
-/* .btn-orcamento-top img {
-    width: 20px; 
-    height: 20px;
-} */
 
 
 /* =================================================================== */
@@ -205,7 +198,6 @@ p {
     border-color: var(--green-primary); 
 }
 
-/* [Seus estilos de Carrossel (não utilizados no HTML final) continuam aqui...] */
 
 /* =================================================================== */
 /* 4. ESTILOS DE SEÇÃO ESPECÍFICOS
@@ -265,17 +257,36 @@ p {
     text-align: center; 
 }
 
-/* --- Separador de Prova Social --- */
-.section-proof-separator {
-    background-color: var(--green-primary); 
-    color: var(--white);
-    padding: 20px 0;
+/* --- Seção de Ícones (Corrigido: Grid no Desktop, Carrossel no Mobile) --- */
+#icones-foco {
+    background-color: var(--gray-light); 
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.icon-grid {
+    /* CORREÇÃO: Garante o layout de 5 colunas no desktop */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px;
     text-align: center;
-    font-size: 1.2em;
+    align-items: start;
+    margin-top: 40px; 
+}
+.icon-item img {
+    opacity: 0.8;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.icon-item:hover img {
+    opacity: 1;
+    transform: scale(1.05);
+}
+.icon-item h3 {
+    font-size: 1.2em; 
+    color: var(--gray-dark);
     font-weight: 600;
 }
 
-/* [O resto dos seus estilos de ícones, benefícios, depoimentos e software continuam aqui...] */
+/* [O resto dos seus estilos de depoimentos, software, etc.] */
 
 /* --- Footer --- */
 footer {
@@ -309,7 +320,11 @@ footer p {
     .section {
         padding: 50px 0; 
     }
-    /* [O resto dos estilos de 992px] */
+    /* AJUSTE PARA TABLET: 3 colunas para a grade de ícones */
+    .icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -321,21 +336,67 @@ footer p {
         font-size: 1.8em; 
         margin-bottom: 30px;
     }
-    /* [O resto dos estilos de 768px] */
+    
+    /* Estilos do Hero em 768px */
+    .hero-content {
+        flex-direction: column; 
+        text-align: center; 
+    }
+    .hero-text {
+        order: 2; 
+    }
+    .hero-image {
+        order: 1; 
+    }
+
+    /* Oculta o telefone e expande o botão no topo */
+    .top-bar-content {
+        justify-content: center; 
+    }
+    .top-bar-phone {
+        display: none; 
+    }
+    .btn-orcamento-top {
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* CARROSSEL DELICADO (AJUSTE PARA MOBILE/TABLET) */
+    .icon-grid {
+        grid-template-columns: none; 
+        display: flex; 
+        overflow-x: scroll; /* Ativa a rolagem */
+        scroll-snap-type: x mandatory; /* Efeito de parada suave */
+        justify-content: flex-start;
+        gap: 20px;
+        padding-bottom: 10px; 
+        margin-left: -20px; 
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    .icon-item {
+        min-width: 45%; 
+        max-width: 45%; 
+        flex-shrink: 0; 
+        scroll-snap-align: start; /* Ponto de parada */
+    }
+    .icon-grid::-webkit-scrollbar {
+        height: 0px; 
+    }
 }
 
 @media (max-width: 576px) {
     
-    /* --- Tipografia Agresiva para Leitura (AJUSTADO PARA MOBILE) --- */
+    /* --- Tipografia Agresiva para Leitura (CORREÇÃO DE REDIMENSIONAMENTO) --- */
     h1 {
-        font-size: 1.2em; /* AJUSTE FINAL: Para caber na tela do celular */
+        font-size: 1.2em; /* Garante o tamanho menor */
         margin-top: 15px; 
         margin-bottom: 5px; 
     }
     h2 {
         font-size: 1.6em; 
     }
-    /* Redução específica para o texto de suporte do Hero */
     .hero-section p {
         font-size: 0.9em; 
         line-height: 1.4; 
@@ -343,12 +404,12 @@ footer p {
     }
     
     .hero-section {
-        padding: 20px 15px; /* AJUSTE FINAL: Diminui o padding vertical no Hero */
+        padding: 20px 15px; 
         min-height: auto; 
         display: block; 
     }
 
-    /* Ordem da imagem e texto no mobile */
+    /* Imagem e Botões Menores */
     .hero-image {
         order: 1; 
         margin-bottom: 15px; 
@@ -362,12 +423,6 @@ footer p {
         max-height: 200px; 
     }
 
-    .hero-text {
-        order: 2; 
-        text-align: center;
-        max-width: 100%; 
-    }
-    
     .btn-primary, .btn-secondary {
         padding: 12px 20px; 
         font-size: 1.0em; 
@@ -385,28 +440,70 @@ footer p {
     .container {
         padding: 0 15px;
     }
-    /* [O resto dos estilos de 576px] */
+    
+    /* Ajuste para molduras/ícones no carrossel mobile (2 por tela) */
+    .icon-item {
+        min-width: calc(50% - 7.5px); 
+        max-width: calc(50% - 7.5px); 
+    }
+}
+
+/* =================================================================== */
+/* 6. COMPONENTE - SETA DE ROLAGEM
+/* =================================================================== */
+
+@keyframes pulse-down {
+    0% {
+        transform: translateY(0) translateX(-50%);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(5px) translateX(-50%); 
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) translateX(-50%);
+        opacity: 0.8;
+    }
+}
+
+.scroll-down-arrow {
+    position: absolute; 
+    bottom: 30px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    z-index: 10; 
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    animation: pulse-down 2.5s infinite; 
+}
+
+.scroll-down-arrow::after {
+    content: '';
+    display: block;
+    width: 20px; 
+    height: 20px; 
+    border-bottom: 3px solid var(--white);
+    border-right: 3px solid var(--white);
+    transform: rotate(45deg);
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+}
+
+.scroll-down-arrow:hover {
+    animation-play-state: paused; 
+    opacity: 1;
 }
 
 /* =================================================================== */
 /* 8. COMPONENTE DE MOLDURA CIRCULAR VERDE
 /* =================================================================== */
 
-.frame-container-row {
-    display: flex; 
-    justify-content: space-around; 
-    align-items: flex-start; 
-    padding: 40px 0;
-    margin-top: 30px;
-}
-
 .frame-item-wrapper {
     display: flex;
     flex-direction: column; 
     align-items: center;
     text-align: center;
-    width: 200px; 
-    margin: 0 15px;
 }
 
 /* O Círculo Externo (A Borda Fina Cinza) */
@@ -420,6 +517,7 @@ footer p {
     justify-content: center;
     align-items: center;
     position: relative; 
+    margin-bottom: 15px; 
 }
 
 /* O Círculo Interno (O Fundo Verde Sólido) */
@@ -427,7 +525,6 @@ footer p {
     width: 90%; 
     height: 90%;
     border-radius: 50%;
-    /* Fundo verde usando seu gradiente */
     background: radial-gradient(circle, var(--green-primary) 0%, var(--green-dark) 100%); 
     
     display: flex;
@@ -444,22 +541,7 @@ footer p {
     object-fit: contain;
 }
 
-/* Linha de Conexão Simples (Simulação da linha reta) */
-.outer-ring::after {
-    content: '';
-    position: absolute;
-    bottom: -30px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 30px; 
-    background-color: var(--gray-medium); 
-}
-
 /* Estilo para o Texto Descritivo abaixo da Moldura */
-.frame-item-wrapper p {
-    margin-top: 40px; 
-    font-size: 1.15em;
-    font-weight: 600;
-    color: var(--gray-dark);
+.frame-item-wrapper h3 {
+    margin-top: 0;
 }
