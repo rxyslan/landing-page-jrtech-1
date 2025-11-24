@@ -287,13 +287,18 @@ p {
     font-size: 1.2em; 
     color: var(--gray-dark);
     font-weight: 600;
+    margin-bottom: 5px; /* NOVO: Reduz margem para aproximar da descrição */
 }
+
+/* NOVO: Estilo para a descrição dos produtos (h4) */
 .icon-item h4 { 
     font-size: 0.9em;
     color: var(--text-color);
     font-weight: 400;
-    margin-top: 5px;
+    margin-top: 0; /* Remove margem de h4 para encostar no h3 */
     line-height: 1.4;
+    min-height: 60px; /* Garante que os cards tenham altura mínima para alinhamento */
+    padding: 0 5px; /* Pequeno padding horizontal para não grudar nas bordas */
 }
 
 /* --- Separador de Prova Social --- */
@@ -721,8 +726,8 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 125%;  
-    max-height: 125%; 
+    max-width: 90%;  
+    max-height: 90%; 
     height: auto;
     object-fit: contain;
 }
