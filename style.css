@@ -74,7 +74,7 @@ p {
 }
 
 .section {
-    padding: 80px 0; /* PADDING PADRÃO DAS SEÇÕES */
+    padding: 80px 0; 
     text-align: center;
     position: relative; 
 }
@@ -258,7 +258,6 @@ p {
 
 /* --- Seção de Ícones (OTIMIZADO PARA 5 MOLDURAS E CENTRALIZADO) --- */
 #icones-foco {
-    /* CORREÇÃO: Reduz o padding-top para subir o conteúdo */
     padding-top: 40px; 
     padding-bottom: 80px;
     background-color: var(--gray-light); 
@@ -299,7 +298,7 @@ p {
     margin-top: 0; 
     line-height: 1.6; /* Aumentado para melhor leitura */
     padding: 0 5px; 
-    margin-bottom: 20px; /* Adiciona espaço abaixo da descrição */
+    margin-bottom: 20px; 
 }
 
 /* --- Separador de Prova Social --- */
@@ -349,7 +348,6 @@ p {
 .benefits-list li strong {
     color: var(--gray-dark); 
     font-weight: 700;
-    /* AJUSTE FINAL: Garante a margem para separar o título em negrito do texto */
     margin-right: 5px; 
 }
 
@@ -518,6 +516,15 @@ footer p {
 
 @media (max-width: 768px) {
     
+    /* AJUSTE PARA O CABEÇALHO FIXO: Ganhar espaço vertical */
+    .top-bar-fixed {
+        padding-top: calc(5px + env(safe-area-inset-top)); /* 5px em vez de 10px */
+        padding-bottom: 5px; 
+    }
+    .btn-orcamento-top {
+        padding: 5px 12px; /* Reduz o padding do botão do topo */
+    }
+
     h1 {
         font-size: 2.5em;
     }
@@ -727,8 +734,8 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 90%;  
-    max-height: 90%; 
+    max-width: 125%;  
+    max-height: 125%; 
     height: auto;
     object-fit: contain;
 }
