@@ -74,7 +74,7 @@ p {
 }
 
 .section {
-    padding: 80px 0; 
+    padding: 80px 0; /* PADDING PADRÃO DAS SEÇÕES */
     text-align: center;
     position: relative; 
 }
@@ -258,9 +258,10 @@ p {
 
 /* --- Seção de Ícones (OTIMIZADO PARA 5 MOLDURAS E CENTRALIZADO) --- */
 #icones-foco {
-    background-color: var(--gray-light); 
-    padding-top: 80px;
+    /* CORREÇÃO: Reduz o padding-top para subir o conteúdo */
+    padding-top: 40px; 
     padding-bottom: 80px;
+    background-color: var(--gray-light); 
 }
 .icon-grid {
     /* Garante o layout de 5 colunas no desktop */
@@ -272,7 +273,7 @@ p {
     margin-top: 40px; 
     
     /* Ajuste de Centralização */
-    max-width: 1050px; /* Aumentado para acomodar o gap maior */
+    max-width: 1050px; 
     margin-left: auto;
     margin-right: auto;
 }
@@ -292,13 +293,13 @@ p {
 
 /* OTIMIZAÇÃO: Estilo para a descrição dos produtos (h4) */
 .icon-item h4 { 
-    font-size: 0.95em; /* Reduzido e otimizado */
+    font-size: 0.95em; 
     color: var(--text-color); 
     font-weight: 400;
     margin-top: 0; 
     line-height: 1.6; /* Aumentado para melhor leitura */
     padding: 0 5px; 
-    margin-bottom: 20px; 
+    margin-bottom: 20px; /* Adiciona espaço abaixo da descrição */
 }
 
 /* --- Separador de Prova Social --- */
@@ -726,8 +727,8 @@ footer p {
 
 /* Estilo para a Imagem dentro do Círculo */
 .product-image-centered {
-    max-width: 124%;  
-    max-height: 125%; 
+    max-width: 90%;  
+    max-height: 90%; 
     height: auto;
     object-fit: contain;
 }
