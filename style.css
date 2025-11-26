@@ -1,3 +1,4 @@
+
 /* =================================================================== */
 /* 1. CONFIGURAÇÕES GLOBAIS
 /* =================================================================== */
@@ -749,4 +750,209 @@ footer p {
 /* Estilo para o Texto Descritivo abaixo da Moldura */
 .frame-item-wrapper h3 {
     margin-top: 0;
+}
+
+/* =================================================================== */
+/* 4.D. ESTILO PARA SIMULAÇÃO DE CUSTOS (Gráficos e Modal)
+/* =================================================================== */
+
+#simulacao-custos {
+    /* Esta seção assume a cor de fundo 'white' (Seção 2) */
+    background-color: var(--white);
+}
+
+.section-title-simulation {
+    color: var(--gray-dark);
+    margin-bottom: 20px;
+}
+
+.simulation-description {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--text-color);
+    text-align: center; /* Alinha o texto de descrição centralizado */
+}
+
+/* --- Container dos Gráficos --- */
+.reduction-stats-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.stat-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px; 
+}
+
+.stat-label {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- Gráfico Circular (Pronto para Animação JS) --- */
+.circle-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Ponto de partida para JS: 0% */
+    background: conic-gradient(var(--gray-medium) 0%, var(--gray-medium) 100%);
+    transition: background-image 1.5s ease-out; 
+}
+
+/* Círculo Interno (Para criar o efeito de anel/borda) */
+.circle-chart::before {
+    content: '';
+    position: absolute;
+    width: 85%; 
+    height: 85%;
+    background: var(--white);
+    border-radius: 50%;
+}
+
+.percentage {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--gray-dark);
+    transition: color 0.5s ease;
+}
+
+/* Cor da porcentagem após a animação */
+.circle-chart.animated .percentage {
+    color: var(--green-primary); 
+}
+
+/* --- Estilo do Botão de Simulação --- */
+.btn-simulation {
+    display: inline-block;
+    background-color: var(--green-primary);
+    color: var(--white);
+    padding: 10px 25px;
+    border: none; 
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-simulation:hover {
+    background-color: var(--green-dark);
+}
+
+/* --- ESTRUTURA DO MODAL (Janela Flutuante) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; /* Inicia oculto, controlado pelo JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 700px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--gray-dark);
+}
+
+/* Estilo dos dados dentro do Modal (simulation-data-hidden) */
+.simulation-data-hidden {
+    display: block; 
+    text-align: left; /* Garante que os dados de referência fiquem alinhados à esquerda */
+    margin-top: 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+.simulation-data-hidden h3 {
+    color: var(--green-primary);
+    margin-top: 10px;
+}
+.simulation-data-hidden .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.simulation-data-hidden ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+.simulation-data-hidden li {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 4px;
+}
+
+/* --- Responsividade Gráficos --- */
+@media (max-width: 768px) {
+    /* CORREÇÃO: Aplicada no bloco principal de 768px para compressão de topo */
+
+    .reduction-stats-grid {
+        gap: 30px;
+        justify-content: center;
+    }
+    .stat-circle {
+        width: 45%; 
+    }
+    .circle-chart {
+        width: 140px;
+        height: 140px;
+    }
+    .percentage {
+        font-size: 2em;
+    }
+    .modal-content {
+        max-width: 95%;
+        padding: 20px;
+    }
+    .simulation-data-hidden .data-grid {
+        grid-template-columns: 1fr; /* Empilha os dados no mobile */
+    }
 }
