@@ -23,7 +23,7 @@
         <div class="container">
             <div class="top-bar-content">
                 <div class="top-bar-phone">
-                    📞 (13) 3013-7675 
+                    📞 (13) 3030-4040 
                 </div>
                 <a href="#contato" class="btn-orcamento-top">
                     Faça Seu Teste Grátis 
@@ -149,7 +149,50 @@
         </div>
     </section>
 
+    <section id="simulacao-custos" class="section">
+        <div class="container">
+            <h2 class="section-title-simulation">Redução real de custos para a empresa.</h2>
+            
+            <p class="simulation-description">
+                Além da otimização dos processos e agilidade na tomada de decisões, o monitoramento pleno da movimentação da 
+                empresa, por meio de gráficos dinâmicos, impacta diretamente na gestão com a redução de custos operacionais, 
+                questões trabalhistas, horas extras não autorizadas, abonos duvidosos, jornadas menores, entre outros.
+            </p>
 
+            <div class="reduction-stats-grid">
+                
+                <div class="stat-circle" data-percent="80">
+                    <div class="circle-chart">
+                        <div class="percentage">0%</div> </div>
+                    <div class="stat-label">Jornada Menor</div>
+                </div>
+
+                <div class="stat-circle" data-percent="70">
+                    <div class="circle-chart">
+                        <div class="percentage">0%</div>
+                    </div>
+                    <div class="stat-label">Questões Trabalhistas</div>
+                </div>
+
+                <div class="stat-circle" data-percent="20">
+                    <div class="circle-chart">
+                        <div class="percentage">0%</div>
+                    </div>
+                    <div class="stat-label">Horas Extras</div>
+                </div>
+
+                <div class="stat-circle" data-percent="90">
+                    <div class="circle-chart">
+                        <div class="percentage">0%</div>
+                    </div>
+                    <div class="stat-label">Abonos Questionáveis</div>
+                </div>
+            </div>
+
+            <button class="btn-simulation" id="open-simulation-modal">BASE DE CÁLCULO DESTA SIMULAÇÃO</button>
+            
+        </div>
+    </section>
     <section id="cases" class="section">
         <div class="container">
             <h2>O que nossos clientes dizem sobre nosso Controle de Ponto</h2>
@@ -215,5 +258,57 @@
         </div>
     </footer>
 
-</body>
+    <div id="simulation-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button" id="close-simulation-modal">&times;</span>
+            
+            <div class="simulation-data-hidden">
+                <p><strong>Total de Colaboradores Utilizados: 200</strong></p>
+                <h3>Referências de cálculo do simulador de economia</h3>
+                
+                <div class="data-grid">
+                    <div>
+                        <h4>Dados Básicos</h4>
+                        <ul>
+                            <li>Dias trabalhados/mês: 22</li>
+                            <li>Carga Horária Média: 8h</li>
+                            <li>Total horas trabalhadas/mês: 220h</li>
+                            <li>Valor hora normal: R$ 22,73</li>
+                            <li>% hora extra semana: 50%</li>
+                            <li>Valor hora extra: R$ 34,09</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Horas Extras</h4>
+                        <ul>
+                            <li>% de colaboradores c/ HE: 30%</li>
+                            <li>Total colaboradores c/ HE: 60</li>
+                            <li>Média HE por colab. (mês): 15h</li>
+                            <li>Média Mensal HE Total: 900h</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Horas Não Trabalhadas (Atrasos)</h4>
+                        <ul>
+                            <li>% de colaboradores: 10%</li>
+                            <li>Total de colaboradores: 20</li>
+                            <li>Média diária não trabalhada (min): 10min</li>
+                            <li>Total Minutos por dia: 200min</li>
+                            <li>Total Horas por dia: 3,33h</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Abono Não Justificado</h4>
+                        <ul>
+                            <li>% de colaboradores: 2%</li>
+                            <li>Total colaboradores: 4</li>
+                            <li>Média mensal por colab.: 2</li>
+                            <li>Média de abonos totais mês: 8</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
 </html>
