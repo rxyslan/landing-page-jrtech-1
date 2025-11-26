@@ -148,3 +148,115 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // ----------------------------------------------------
+    // 1. Lógica do Modal (Janela Flutuante)
+    // ----------------------------------------------------
+    const modal = document.getElementById('simulation-modal');
+    const openBtn = document.getElementById('open-simulation-modal');
+    const closeBtn = document.getElementById('close-simulation-modal');
+
+    if (openBtn && modal) {
+        // Abre o modal
+        openBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Impede a rolagem do fundo
+        });
+
+        // Fecha o modal
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('open');
+            document.body.style.overflow = ''; // Restaura a rolagem do fundo
+        });
+
+        // Fechar ao clicar fora do modal
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // ----------------------------------------------------
+    // 2. Lógica da Animação dos Gráficos Circulares
+    // ----------------------------------------------------
+    const statCircles = document.querySelectorAll('.stat-circle');
+    const simulationSection = document.getElementById('simulacao-custos');
+    
+    // Configurações da animação
+    const ANIMATION_DURATION = 1500; // 1.5 segundos
+    
+    let animationStarted = false; // Flag para garantir que a animação rode apenas uma vez
+
+    function animateCircle(element, percentage) {
+        const chart = element.querySelector('.circle-chart');
+        const percentageText = element.querySelector('.percentage');
+        
+        let startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = timestamp - startTime;
+            const timeRatio = Math.min(1, progress / ANIMATION_DURATION);
+            
+            // Calcula o valor atual
+            const currentFill = Math.round(percentage * timeRatio);
+
+            // 1. Atualizar o preenchimento do gráfico (CSS Conic Gradient)
+            chart.style.background = `conic-gradient(
+                var(--green-primary) 0%, 
+                var(--green-primary) ${currentFill}%, 
+                var(--gray-medium) ${currentFill}%, 
+                var(--gray-medium) 100%
+            )`;
+
+            // 2. Atualizar o texto da porcentagem (Contagem)
+            percentageText.textContent = `${Math.round(percentage * timeRatio)}%`;
+
+            if (timeRatio < 1) {
+                requestAnimationFrame(step);
+            } else {
+                // Adiciona a classe para mudar a cor do texto no final
+                chart.classList.add('animated'); 
+            }
+        }
+
+        requestAnimationFrame(step);
+    }
+
+    // Função para iniciar a animação quando a seção entrar na tela (Intersection Observer)
+    function startAnimations(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animationStarted) {
+                statCircles.forEach(circle => {
+                    const percent = parseInt(circle.dataset.percent);
+                    // Garante que o CSS var(--green-primary) seja usado (necessário para a função animateCircle)
+                    if(percent >= 0) {
+                        animateCircle(circle, percent);
+                    }
+                });
+                animationStarted = true;
+                observer.unobserve(simulationSection); // Para que a animação não se repita
+            }
+        });
+    }
+
+    // Configuração do Intersection Observer (Para detectar a visibilidade)
+    if (simulationSection && 'IntersectionObserver' in window) {
+        const observerOptions = {
+            root: null, // viewport
+            threshold: 0.1 // Começa a animar quando 10% da seção está visível
+        };
+        const observer = new IntersectionObserver(startAnimations, observerOptions);
+        observer.observe(simulationSection);
+    } else if (simulationSection) {
+        // Fallback para navegadores antigos (executa a animação imediatamente)
+        statCircles.forEach(circle => {
+            const percent = parseInt(circle.dataset.percent);
+            animateCircle(circle, percent);
+        });
+    }
+
+});
