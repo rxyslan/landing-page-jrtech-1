@@ -1,4 +1,3 @@
-
 /* =================================================================== */
 /* 1. CONFIGURAÇÕES GLOBAIS
 /* =================================================================== */
@@ -38,7 +37,7 @@ body {
 
 /* --- Tipografia Global --- */
 h1, h2, h3 {
-    color: var(--gray-dark);
+    color: white;
     font-weight: 700;
     line-height: 1.2;
 }
@@ -123,7 +122,7 @@ p {
     
     /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
     padding-top: calc(10px + env(safe-area-inset-top)); 
-    padding-bottom: 10px; 
+    padding-bottom: px; 
 }
 .top-bar-content {
     display: flex;
@@ -267,8 +266,8 @@ p {
     /* Garante o layout de 5 colunas no desktop */
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
-    gap: 30px; /* AUMENTADO: Mais espaço entre as molduras */
-    text-align: center; /* Centraliza a moldura e o h3 */
+    gap: 30px; 
+    text-align: center; 
     align-items: start;
     margin-top: 40px; 
     
@@ -302,9 +301,8 @@ p {
     padding: 0 5px; 
     margin-bottom: 20px; 
     
-    /* ***** CORREÇÃO PARA ALINHAR À ESQUERDA ***** */
+    /* CORREÇÃO PARA ALINHAR À ESQUERDA */
     text-align: left; 
-    /* ******************************************* */
 }
 
 /* --- Separador de Prova Social --- */
@@ -336,25 +334,24 @@ p {
 
 .benefits-list li {
     font-size: 1.25em; 
-    margin-bottom: 25px; /* MAIS ESPAÇO vertical entre os itens */
+    margin-bottom: 25px; 
     display: flex;
-    align-items: flex-start; /* Alinha o conteúdo ao topo do item */
+    align-items: flex-start; 
     color: var(--gray-dark);
 }
 
 .benefits-list li .icon {
     font-size: 1.6em; 
     color: var(--green-primary); 
-    margin-right: 15px; /* Espaço entre o ícone e o texto */
+    margin-right: 15px; 
     line-height: 1;
     flex-shrink: 0; 
-    transform: translateY(2px); /* Alinha o check no topo da primeira linha de texto */
+    transform: translateY(2px); 
 }
 
 .benefits-list li strong {
     color: var(--gray-dark); 
     font-weight: 700;
-    /* AJUSTE FINAL: Garante a margem para separar o título em negrito do texto */
     margin-right: 5px; 
 }
 
@@ -494,211 +491,178 @@ footer p {
 
 
 /* =================================================================== */
-/* 5. RESPONSIVIDADE (MEDIA QUERIES)
+/* 4.D. ESTILO PARA SIMULAÇÃO DE CUSTOS (Gráficos e Modal)
 /* =================================================================== */
 
-@media (max-width: 992px) {
-    h1 {
-        font-size: 3.2em;
-    }
-    h2 {
-        font-size: 2.4em;
-    }
-    .hero-section {
-        padding: 80px 20px; 
-    }
-    .section {
-        padding: 50px 0; 
-    }
-    /* AJUSTE PARA TABLET: 3 colunas para a grade de ícones (para 5 itens) */
-    .icon-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-        max-width: 800px; 
-    }
-    .testimonials-grid { /* Ajuste para Depoimentos em Tablet */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
+#simulacao-custos {
+    background-color: var(--white);
 }
 
-@media (max-width: 768px) {
-    
-    /* AJUSTE PARA O CABEÇALHO FIXO: Ganhar espaço vertical */
-    .top-bar-fixed {
-        padding-top: calc(5px + env(safe-area-inset-top)); /* 5px em vez de 10px */
-        padding-bottom: 5px; 
-    }
-    .btn-orcamento-top {
-        padding: 5px 12px; /* Reduz o padding do botão do topo */
-    }
-
-    h1 {
-        font-size: 2.5em;
-    }
-    h2 {
-        font-size: 1.8em; 
-        margin-bottom: 30px;
-    }
-    
-    /* Estilos do Hero em 768px */
-    .hero-content {
-        flex-direction: column; 
-        text-align: center; 
-    }
-    .hero-text {
-        order: 2; 
-    }
-    .hero-image {
-        order: 1; 
-    }
-
-    /* Oculta o telefone e expande o botão no topo */
-    .top-bar-content {
-        justify-content: center; 
-    }
-    .top-bar-phone {
-        display: none; 
-    }
-    .btn-orcamento-top {
-        flex-grow: 1;
-        text-align: center;
-        justify-content: center;
-    }
-    
-    /* CARROSSEL DELICADO (AJUSTE PARA MOBILE/TABLET) */
-    .icon-grid {
-        grid-template-columns: none; 
-        display: flex; 
-        overflow-x: scroll; 
-        scroll-snap-type: x mandatory; 
-        justify-content: flex-start;
-        gap: 20px;
-        padding-bottom: 10px; 
-        
-        max-width: none;
-        margin-left: -20px; 
-        margin-right: 0;
-        padding-left: 20px;
-        padding-right: 20px; 
-    }
-    .icon-item {
-        min-width: 45%; 
-        max-width: 45%; 
-        flex-shrink: 0; 
-        scroll-snap-align: start; 
-    }
-    .icon-grid::-webkit-scrollbar {
-        height: 0px; 
-    }
+.section-title-simulation {
+    color: var(--gray-dark);
+    margin-bottom: 20px;
 }
 
-@media (max-width: 576px) {
-    
-    /* --- Tipografia Agresiva para Leitura (CORREÇÃO DE REDIMENSIONAMENTO) --- */
-    h1 {
-        font-size: 1.2em; 
-        margin-top: 15px; 
-        margin-bottom: 5px; 
-    }
-    h2 {
-        font-size: 1.6em; 
-    }
-    .hero-section p {
-        font-size: 0.9em; 
-        line-height: 1.4; 
-        margin-bottom: 15px; 
-    }
-    
-    .hero-section {
-        padding: 20px 15px; 
-        min-height: auto; 
-        display: block; 
-    }
-
-    /* Imagem e Botões Menores */
-    .hero-image {
-        order: 1; 
-        margin-bottom: 15px; 
-        width: 100%;
-        max-width: 250px; 
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-visual-image {
-        max-height: 200px; 
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 12px 20px; 
-        font-size: 1.0em; 
-        margin-top: 5px; 
-        width: 100%;
-        max-width: 300px; 
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-    }
-
-    .section {
-        padding: 30px 0; 
-    }
-    .container {
-        padding: 0 15px;
-    }
-    
-    /* Ajuste para molduras/ícones no carrossel mobile (2 por tela) */
-    .icon-item {
-        min-width: calc(50% - 7.5px); 
-        max-width: calc(50% - 7.5px); 
-    }
+.simulation-description {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1em;
+    color: var(--text-color);
+    text-align: center; 
 }
 
-/* =================================================================== */
-/* 6. COMPONENTE - SETA DE ROLAGEM
-/* =================================================================== */
-
-@keyframes pulse-down {
-    0% {
-        transform: translateY(0) translateX(-50%);
-        opacity: 0.8;
-    }
-    50% {
-        transform: translateY(5px) translateX(-50%); 
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(0) translateX(-50%);
-        opacity: 0.8;
-    }
+/* --- Container dos Gráficos --- */
+.reduction-stats-grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 60px;
 }
 
-.scroll-down-arrow {
-    position: absolute; 
-    bottom: 30px; 
-    left: 50%; 
-    transform: translateX(-50%); 
-    z-index: 10; 
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    animation: pulse-down 2.5s infinite; 
+.stat-circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 220px; 
 }
 
-.scroll-down-arrow::after {
+.stat-label {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: var(--text-color);
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- Gráfico Circular (Pronto para Animação JS) --- */
+.circle-chart {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: conic-gradient(var(--gray-medium) 0%, var(--gray-medium) 100%);
+    transition: background-image 1.5s ease-out; 
+}
+
+/* Círculo Interno (Para criar o efeito de anel/borda) */
+.circle-chart::before {
     content: '';
-    display: block;
-    width: 20px; 
-    height: 20px; 
-    border-bottom: 3px solid var(--white);
-    border-right: 3px solid var(--white);
-    transform: rotate(45deg);
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));
+    position: absolute;
+    width: 85%; 
+    height: 85%;
+    background: var(--white);
+    border-radius: 50%;
 }
 
-.scroll-down-arrow:hover {
-    animation-play-state: paused; 
+.percentage {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--gray-dark);
+    transition: color 0.5s ease;
+}
+
+.circle-chart.animated .percentage {
+    color: var(--green-primary); 
+}
+
+/* --- Estilo do Botão de Simulação --- */
+.btn-simulation {
+    display: inline-block;
+    background-color: var(--green-primary);
+    color: var(--white);
+    padding: 10px 25px;
+    border: none; 
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.btn-simulation:hover {
+    background-color: var(--green-dark);
+}
+
+/* --- ESTRUTURA DO MODAL (Janela Flutuante) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.open {
+    display: flex;
     opacity: 1;
+}
+
+.modal-content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 700px;
+    position: relative;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.open .modal-content {
+    transform: translateY(0);
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--gray-dark);
+}
+
+/* Estilo dos dados dentro do Modal (simulation-data-hidden) */
+.simulation-data-hidden {
+    display: block; 
+    text-align: left; 
+    margin-top: 0;
+    padding: 0;
+    border: none;
+    background: none;
+}
+.simulation-data-hidden h3 {
+    color: var(--green-primary);
+    margin-top: 10px;
+}
+.simulation-data-hidden .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+.simulation-data-hidden ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+.simulation-data-hidden li {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 4px;
 }
 
 /* =================================================================== */
@@ -932,27 +896,184 @@ footer p {
 
 /* --- Responsividade Gráficos --- */
 @media (max-width: 768px) {
-    /* CORREÇÃO: Aplicada no bloco principal de 768px para compressão de topo */
+    
+    /* AJUSTE PARA O CABEÇALHO FIXO: Ganhar espaço vertical */
+    .top-bar-fixed {
+        padding-top: calc(5px + env(safe-area-inset-top)); 
+        padding-bottom: 5px; 
+    }
+    .btn-orcamento-top {
+        padding: 5px 12px; 
+    }
 
+    h1 {
+        font-size: 2.5em;
+    }
+    h2 {
+        font-size: 1.8em; 
+        margin-bottom: 30px;
+    }
+    
+    /* Estilos do Hero em 768px */
+    .hero-content {
+        flex-direction: column; 
+        text-align: center; 
+    }
+    .hero-text {
+        order: 2; 
+    }
+    .hero-image {
+        order: 1; 
+    }
+
+    /* Oculta o telefone e expande o botão no topo */
+    .top-bar-content {
+        justify-content: center; 
+    }
+    .top-bar-phone {
+        display: none; 
+    }
+    .btn-orcamento-top {
+        flex-grow: 1;
+        text-align: center;
+        justify-content: center;
+    }
+    /* --- Responsividade Gráficos (Aplicável para telas de até 768px) --- */
+@media (max-width: 768px) {
+    
+    /* Alinhamento dos gráficos no centro */
     .reduction-stats-grid {
         gap: 30px;
         justify-content: center;
     }
+    
+    /* Redimensionamento dos itens para caberem em duas colunas no mobile/tablet */
     .stat-circle {
         width: 45%; 
     }
+    
+    /* Redução do tamanho físico do círculo para caber melhor na tela menor */
     .circle-chart {
         width: 140px;
         height: 140px;
     }
+    
+    /* Redução do tamanho da porcentagem */
     .percentage {
         font-size: 2em;
     }
+    
+    /* Ajuste do modal para telas pequenas */
     .modal-content {
         max-width: 95%;
         padding: 20px;
     }
+    
+    /* Empilha os dados de referência do modal no mobile (deixa de ser 4 colunas) */
     .simulation-data-hidden .data-grid {
-        grid-template-columns: 1fr; /* Empilha os dados no mobile */
+        grid-template-columns: 1fr; 
+    }
+}
+    /* CARROSSEL DELICADO (AJUSTE PARA MOBILE/TABLET) */
+    .icon-grid {
+        grid-template-columns: none; 
+        display: flex; 
+        overflow-x: scroll; 
+        scroll-snap-type: x mandatory; 
+        justify-content: flex-start;
+        gap: 20px;
+        padding-bottom: 10px; 
+        
+        max-width: none;
+        margin-left: -20px; 
+        margin-right: 0;
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    .icon-item {
+        min-width: 45%; 
+        max-width: 45%; 
+        flex-shrink: 0; 
+        scroll-snap-align: start; 
+    }
+    .icon-grid::-webkit-scrollbar {
+        height: 0px; 
+    }
+    
+    /* SOLUÇÃO DE COMPRESSÃO DE TOPO */
+    body {
+        padding-top: calc(50px + env(safe-area-inset-top)); 
+    }
+}
+
+@media (max-width: 576px) {
+    
+    /* --- Tipografia Agresiva para Leitura (CORREÇÃO DE REDIMENSIONAMENTO) --- */
+    h1 {
+        font-size: 1.8em; /* Aumentado para 1.8em para ter o visual forte do Control ID */
+        margin-top: 15px; 
+        margin-bottom: 5px; 
+        text-align: center; /* CENTRALIZA O H1 NO MOBILE */
+    }
+    
+    /* Se a classe h1-style for usada no H2 (opcional, mas recomendado para o layout Control ID) */
+    .hero-section .h1-style {
+        font-size: 1.8em; 
+        line-height: 1.1;
+    }
+
+    h2 {
+        font-size: 1.6em; 
+    }
+    .hero-section p {
+        font-size: 0.9em; 
+        line-height: 1.4; 
+        margin-bottom: 15px; 
+        text-align: center; /* CENTRALIZA O TEXTO ABAIXO DO H1 */
+    }
+    
+    .hero-section {
+        padding: 20px 15px; 
+        min-height: auto; 
+        display: block; 
+    }
+
+    /* Imagem e Botões Menores */
+    .hero-image {
+        order: 1; 
+        margin-bottom: 15px; 
+        width: 100%;
+        max-width: 250px; 
+        margin-left: auto; /* CENTRALIZA A IMAGEM */
+        margin-right: auto;
+        display: block;
+    }
+    
+    .hero-visual-image {
+        max-height: 200px; 
+    }
+
+    .btn-primary, .btn-secondary {
+        padding: 12px 20px; 
+        font-size: 1.0em; 
+        margin-top: 5px; 
+        width: 100%;
+        max-width: 300px; 
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .section {
+        padding: 30px 0; 
+    }
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Ajuste para molduras/ícones no carrossel mobile (2 por tela) */
+    .icon-item {
+        min-width: calc(50% - 7.5px); 
+        max-width: calc(50% - 7.5px); 
     }
 }
