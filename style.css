@@ -1077,3 +1077,98 @@ footer p {
         max-width: calc(50% - 7.5px); 
     }
 }
+@media (max-width: 768px) {
+    
+    /* ... (Regras de 768px inalteradas) ... */
+    
+    /* REGRAS DA BARRA FIXA */
+    .top-bar-content {
+        /* Permite que o telefone e o botão compartilhem o espaço */
+        justify-content: space-between; 
+        gap: 10px;
+    }
+    
+    /* CORREÇÃO: Garante que o telefone apareça */
+    .top-bar-phone {
+        display: block; /* MUDANÇA: Exibe o telefone */
+        flex-shrink: 0; /* Impede o telefone de encolher muito */
+        font-size: 0.9em; /* Tamanho menor para caber */
+    }
+    
+    .btn-orcamento-top {
+        /* MUDANÇA: O botão cresce para ocupar o espaço restante */
+        flex-grow: 1; 
+        text-align: center;
+        justify-content: center;
+        padding: 5px 10px; /* Padding menor */
+        font-size: 0.9em;
+    }
+    
+    /* REGRAS DO HERO (Centralização/Redução) */
+    .hero-content {
+        flex-direction: column; 
+        text-align: center; 
+    }
+    .hero-text {
+        order: 2; 
+        text-align: center; /* Centraliza o texto do Hero */
+    }
+    .hero-image {
+        order: 1; 
+    }
+    
+    /* CARROSSEL DELICADO (Mantido) */
+    .icon-grid {
+        grid-template-columns: none; 
+        display: flex; 
+        overflow-x: scroll; 
+        scroll-snap-type: x mandatory; 
+        justify-content: flex-start;
+        gap: 20px;
+        padding-bottom: 10px; 
+        max-width: none;
+        margin-left: -20px; 
+        margin-right: 0;
+        padding-left: 20px;
+        padding-right: 20px; 
+    }
+    .icon-item {
+        min-width: 45%; 
+        max-width: 45%; 
+        flex-shrink: 0; 
+        scroll-snap-align: start; 
+    }
+    .icon-grid::-webkit-scrollbar {
+        height: 0px; 
+    }
+}
+
+@media (max-width: 576px) {
+    
+    /* SOLUÇÃO DE COMPRESSÃO DE TOPO */
+    body {
+        padding-top: calc(50px + env(safe-area-inset-top)); 
+    }
+    .top-bar-fixed {
+        padding-top: calc(5px + env(safe-area-inset-top)); 
+        padding-bottom: 5px; 
+    }
+    .btn-orcamento-top {
+        padding: 5px 12px; 
+        font-size: 0.85em; /* Fonte ainda menor no mobile */
+    }
+
+    /* Redução do H1 para caber */
+    h1 {
+        font-size: 1.8em; 
+        margin-top: 15px; 
+        margin-bottom: 5px; 
+        text-align: center; 
+    }
+    .hero-section p {
+        font-size: 0.9em; 
+        line-height: 1.4; 
+        margin-bottom: 15px; 
+        text-align: center; 
+    }
+}
