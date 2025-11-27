@@ -36,13 +36,14 @@ body {
 }
 
 /* --- Tipografia Global --- */
-h1, h2, h3 {
+h1, h3 {
     color: white;
     font-weight: 700;
     line-height: 1.2;
 }
 
 h1 {
+    color: (--gray-dark)
     font-size: 3.8em; 
     margin-bottom: 25px;
 }
