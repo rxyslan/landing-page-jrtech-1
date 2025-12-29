@@ -15,7 +15,7 @@
     --white: #ffffff;
     --shadow-light: rgba(0, 0, 0, 0.08); 
     --shadow-medium: rgba(0, 0, 0, 0.15);
-    --version-notice-height: 0px; 
+    --version-notice-height: 25px; 
 }
 
 /* --- Reset Básico --- */
@@ -87,6 +87,26 @@ p {
     background-color: var(--white);
 }
 
+/* =================================================================== */
+/* 2.C. AVISO DE VERSÃO (FIXO NO TOPO)
+/* =================================================================== */
+.version-notice {
+    background-color: black;
+    color: white;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-align: center;
+    padding: 5px 0;
+    width: 100%;
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 1005; 
+}
+
+/* =================================================================== */
+/* 2.B. BARRA DO TOPO FIXA (AJUSTADA PARA FICAR ABAIXO DO AVISO)
+/* =================================================================== */
 .top-bar-fixed {
     background-color: var(--white); 
     color: var(--gray-dark);
@@ -97,11 +117,12 @@ p {
     z-index: 1000;
     box-shadow: 0 2px 10px var(--shadow-light); 
     
-    top: 0; /* MUDANÇA: Colado no topo absoluto */
+    /* Posiciona a barra logo abaixo do Aviso de Versão */
+    top: var(--version-notice-height); 
     
-    /* Garante que em iPhones o conteúdo não fique embaixo do notch */
+    /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
     padding-top: calc(10px + env(safe-area-inset-top)); 
-}
+    padding-bottom: px; 
 }
 .top-bar-content {
     display: flex;
@@ -112,18 +133,18 @@ p {
     font-size: 1.1em;
     font-weight: 600;
     color: var(--gray-dark);
-    
+}
 .btn-orcamento-top {
-    display: inline-flex; /* Garante que ele só ocupe o espaço do texto */
+    display: flex;
     align-items: center;
     gap: 8px;
     background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
-    color: var(--gray-dark);
-    padding: 8px 20px;
+    color: var(--gray-dark); 
+    padding: 8px 15px;
     border-radius: 50px;
     font-weight: 600;
-    text-decoration: none;
-    width: auto; /* Impede de esticar */
+    font-size: 0.9em;
+    transition: transform 0.2s ease;
 }
 .btn-orcamento-top:hover {
     transform: scale(1.05);
@@ -1125,17 +1146,17 @@ footer p {
 @media (max-width: 576px) {
     
     /* SOLUÇÃO DE COMPRESSÃO DE TOPO */
- @media (max-width: 576px) {
     body {
-        /* Garante que no mobile também fique colado no topo */
-        padding-top: calc(55px + env(safe-area-inset-top)); 
+        padding-top: calc(50px + env(safe-area-inset-top)); 
     }
-    
     .top-bar-fixed {
         padding-top: calc(5px + env(safe-area-inset-top)); 
         padding-bottom: 5px; 
     }
-}
+    .btn-orcamento-top {
+        padding: 5px 12px; 
+        font-size: 0.85em; /* Fonte ainda menor no mobile */
+    }
 
     /* Redução do H1 para caber */
     h1 {
