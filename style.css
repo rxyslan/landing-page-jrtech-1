@@ -112,18 +112,18 @@ p {
     font-size: 1.1em;
     font-weight: 600;
     color: var(--gray-dark);
-}
+    
 .btn-orcamento-top {
-    display: flex;
+    display: inline-flex; /* Garante que ele só ocupe o espaço do texto */
     align-items: center;
     gap: 8px;
     background: linear-gradient(90deg, var(--green-neon-start) 0%, var(--green-neon-end) 100%);
-    color: var(--gray-dark); 
-    padding: 8px 15px;
+    color: var(--gray-dark);
+    padding: 8px 20px;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.9em;
-    transition: transform 0.2s ease;
+    text-decoration: none;
+    width: auto; /* Impede de esticar */
 }
 .btn-orcamento-top:hover {
     transform: scale(1.05);
