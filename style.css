@@ -87,9 +87,6 @@ p {
     background-color: var(--white);
 }
 
-/* =================================================================== */
-/* 2.B. BARRA DO TOPO FIXA (AJUSTADA PARA FICAR ABAIXO DO AVISO)
-/* =================================================================== */
 .top-bar-fixed {
     background-color: var(--white); 
     color: var(--gray-dark);
@@ -100,12 +97,11 @@ p {
     z-index: 1000;
     box-shadow: 0 2px 10px var(--shadow-light); 
     
-    /* Posiciona a barra logo abaixo do Aviso de Versão */
-    top: var(--version-notice-height); 
+    top: 0; /* MUDANÇA: Colado no topo absoluto */
     
-    /* GARANTE ESPAÇO NA ÁREA DE STATUS DO SISTEMA (NOTCH) */
+    /* Garante que em iPhones o conteúdo não fique embaixo do notch */
     padding-top: calc(10px + env(safe-area-inset-top)); 
-    padding-bottom: px; 
+}
 }
 .top-bar-content {
     display: flex;
@@ -1129,17 +1125,17 @@ footer p {
 @media (max-width: 576px) {
     
     /* SOLUÇÃO DE COMPRESSÃO DE TOPO */
+ @media (max-width: 576px) {
     body {
-        padding-top: calc(50px + env(safe-area-inset-top)); 
+        /* Garante que no mobile também fique colado no topo */
+        padding-top: calc(55px + env(safe-area-inset-top)); 
     }
+    
     .top-bar-fixed {
         padding-top: calc(5px + env(safe-area-inset-top)); 
         padding-bottom: 5px; 
     }
-    .btn-orcamento-top {
-        padding: 5px 12px; 
-        font-size: 0.85em; /* Fonte ainda menor no mobile */
-    }
+}
 
     /* Redução do H1 para caber */
     h1 {
