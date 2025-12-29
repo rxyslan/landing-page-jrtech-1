@@ -15,7 +15,7 @@
     --white: #ffffff;
     --shadow-light: rgba(0, 0, 0, 0.08); 
     --shadow-medium: rgba(0, 0, 0, 0.15);
-    --version-notice-height: 25px; 
+    --version-notice-height: 0px; 
 }
 
 /* --- Reset Básico --- */
