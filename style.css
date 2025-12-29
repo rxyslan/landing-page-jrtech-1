@@ -88,23 +88,6 @@ p {
 }
 
 /* =================================================================== */
-/* 2.C. AVISO DE VERSÃO (FIXO NO TOPO)
-/* =================================================================== */
-.version-notice {
-    background-color: black;
-    color: white;
-    font-size: 0.8em;
-    font-weight: 600;
-    text-align: center;
-    padding: 5px 0;
-    width: 100%;
-    position: fixed; 
-    top: 0;
-    left: 0;
-    z-index: 1005; 
-}
-
-/* =================================================================== */
 /* 2.B. BARRA DO TOPO FIXA (AJUSTADA PARA FICAR ABAIXO DO AVISO)
 /* =================================================================== */
 .top-bar-fixed {
